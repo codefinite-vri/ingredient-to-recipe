@@ -34,7 +34,7 @@ body{
     .switch-integration{
       float:right !important;
     }
-    .MuiGrid-root {
+    /* .MuiGrid-root {
       display: flex;
       align-items: center; 
       justify-content: center;
@@ -43,7 +43,7 @@ body{
   .MuiPaper-root {
     padding:5px 20px;
     margin:0 5px;
-}
+} */
 
 .Root-container-2{
   height:66vh !important;

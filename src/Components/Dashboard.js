@@ -66,7 +66,7 @@ export function LoginButton() {
     event.preventDefault();
   }
 
-export default function Dashboard() {
+export default function UserProfile() {
     const classes = useStyles();
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
