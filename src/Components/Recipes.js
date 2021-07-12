@@ -21,13 +21,13 @@ export default function Recipes () {
     });
     const [slider,setSlider] = React.useState(5)
     const[rangeArr, setRangeArr] = useState([]);
-    
+    const [allergenName,setAllergenName] = React.useState([]);
+    const [recChange,setRecChange] = useState(false);
 
     const fetchRecipes=async()=>{
         try{
           console.log('in fetch rec')
-         const rec = await getRecipes(location.search,rangeArr,slider);
-         console.log(rec)
+         const rec = await getRecipes(location.search,rangeArr,slider,mode);
          setRecipes(rec);
         }catch(error){
           console.log(error);
@@ -39,7 +39,8 @@ export default function Recipes () {
         if(location.state !== undefined)
           setMode(location.state.mode)
           fetchRecipes();
-      },[location.search,rangeArr,slider]);
+      },[location.search,rangeArr,slider,recChange]);
+
 
         return (
             <Container>  
@@ -55,6 +56,8 @@ export default function Recipes () {
               slider={slider}
               setSlider={setSlider}
               setRangeArr={setRangeArr}
+              allergenName={allergenName}
+              setAllergenName={setAllergenName}
             /> 
             </Col>
             <Col xs={8} md={9}>
@@ -68,8 +71,11 @@ export default function Recipes () {
                     instructions = {r.instructions}
                     ingredients = {r.ingredients}
                     cookTime={r.cookTime}
-                    img = {r.image}          
+                    img = {r.image}        
                     servings={r.servings}
+                    likes={r.likes}
+                    recChange={recChange}
+                    setRecChange={setRecChange}
                     ></Card>)
                     }
              

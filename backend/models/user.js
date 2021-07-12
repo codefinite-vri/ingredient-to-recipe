@@ -6,4 +6,4 @@ var user = new mongoose.Schema({
 	Allergens : [String]
 });
 
-module.exports = mongoose.model('user', user);
+module.exports = mongoose.model('User', user);

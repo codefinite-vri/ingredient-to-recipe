@@ -42,7 +42,8 @@ export default function MyFavorites(){
           title = {r.title}
           instructions = {r.instructions}
           ingredients = {r.ingredients}
-          img = {r.images}          
+          img = {r.images}  
+          likes={r.likes}       
           servings={r.servings}
           isMyFav={isMyFav}
           changed={changed}

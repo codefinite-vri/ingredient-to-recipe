@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { withStyles, makeStyles} from '@material-ui/core/styles';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import { Slider } from '@material-ui/core';
+import { Slider,ListItemText,MenuItem,InputLabel,Select, Input } from '@material-ui/core';
 import {Col} from 'react-bootstrap'
 
 const useStyles = makeStyles((theme) => ({
@@ -16,6 +16,10 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(3),
   },
+  allergenFilter:{
+    minWidth: 120,
+    maxWidth: 200,
+  }
 }));
 
 const PrettoSlider = withStyles({
@@ -49,8 +53,20 @@ const PrettoSlider = withStyles({
   },
 })(Slider);
 
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};
+
 export default function RecipeFilter(props) {
   const classes = useStyles();
+  
 
   const handleChange = (event) => {
     props.setRanges({ ...props.ranges, [event.target.name]: event.target.checked });
@@ -60,8 +76,27 @@ export default function RecipeFilter(props) {
     props.setSlider(newVal)
   }
 
+  const handleAllergens = (event) => {
+    props.setAllergenName(event.target.value);
+    };
+
+  
+const names = [
+  'Tomato',
+  'Potato',
+  'Onion',
+  'Cheese',
+  'Milk',
+  'Apple',
+  'Peas',
+  'Rice',
+  'Chicken',
+  'Eggs',
+];
+
 
   useEffect(() =>{
+    console.log(props)
     let arr = [];
     const { range1,range2,range3,range4,range5,range6 } = props.ranges;
     if(range1)
@@ -81,6 +116,8 @@ export default function RecipeFilter(props) {
       props.setRangeArr(arr);
 
   },[props.ranges])
+
+
 
   const { range1,range2,range3,range4,range5,range6 } = props.ranges;
 
@@ -125,6 +162,27 @@ export default function RecipeFilter(props) {
       marks={[{value:1,label:'1'}]}
       defaultValue={5} /></Col>
     </div>
+    
+    <Col xs={3}>
+    <FormControl className={classes.allergenFilter}>
+        <InputLabel >Allergens</InputLabel>
+        <Select
+          multiple
+          value={props.allergenName}
+          onChange={handleAllergens}
+          input={<Input />}
+          renderValue={(selected) => selected.join(', ')}
+          MenuProps={MenuProps}
+        >
+          {names.map((name) => (
+            <MenuItem key={name} value={name}>
+              <Checkbox checked={props.allergenName.indexOf(name) > -1} />
+              <ListItemText primary={name} />
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    </Col>
     </div>
   );
 }

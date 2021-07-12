@@ -3,7 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import Chip from '@material-ui/core/Chip';
 import './Chip.css'
-import CancelIcon from '@material-ui/icons/Cancel';
+import { getPopularChips } from '../api';
+import { PauseCircleFilledSharp } from '@material-ui/icons';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -33,14 +34,21 @@ const useStyles = makeStyles((theme) => ({
 export default function SmallChips(props) {
 
   const classes = useStyles();
-  const [chipData , setChipData]= useState([
-      { key: 0, src:"chip",label: 'Peas' },
-      { key: 1, src:"chip",label: 'Cheese' },
-      { key: 2, src:"chip",label: 'Oil' },
-      { key: 3, src:"chip",label: 'Sugar' },
-      { key: 4, src:"chip",label: 'Paneer' },
-    
-  ]);
+  const [chipData , setChipData]= useState([]);
+
+  const getChips = async() =>{
+      let chips = await getPopularChips(); //array of chip names and counts
+      console.log(chips)
+      setChipData(chips)
+  }
+
+  useEffect(() => {
+      getChips();
+  },[])
+
+
+  useEffect(() => console.log(chipData),[chipData])
+
   const removeChip = (chipToDelete) => {
     setChipData((chips) => chips.filter((chip) => chip.key !== chipToDelete.key));
   }

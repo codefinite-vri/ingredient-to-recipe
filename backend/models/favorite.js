@@ -7,9 +7,9 @@ var favoriteSchema = new mongoose.Schema({
         //array of object Ids belonging to recipes
 		{
 			type: mongoose.Schema.Types.ObjectId,
-			ref: 'recipe',
+			ref: 'Recipe',
 		}
     ]
 });
 
-module.exports = mongoose.model('favorite', favoriteSchema);
+module.exports = mongoose.model('Favorite', favoriteSchema);

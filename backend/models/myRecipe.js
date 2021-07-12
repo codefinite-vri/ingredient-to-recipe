@@ -6,13 +6,13 @@ var myRecipeSchema = new mongoose.Schema({
     AcceptedRecipes:[
         {    
         type:mongoose.Schema.Types.ObjectId,
-        ref:"recipe"
+        ref:"Recipe"
     }
     ],
     PendingRecipes:[
         {
             type:mongoose.Schema.Types.ObjectId,
-            ref:'tempRecipe'
+            ref:'TempRecipe'
         }],
 
     RejectedRecipes:[
@@ -24,4 +24,4 @@ var myRecipeSchema = new mongoose.Schema({
     ],
 });
 
-module.exports = mongoose.model('myRecipe', myRecipeSchema);
+module.exports = mongoose.model('MyRecipe', myRecipeSchema);

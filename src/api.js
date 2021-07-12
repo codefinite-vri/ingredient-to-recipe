@@ -1,29 +1,41 @@
 
 export const getRemedies = () => fetch("/api/home-remedies").then(res => res.json());
 
-export const getRecipes = async (search,cookTimes,servings) => {
+export const getRecipes = async (search,cookTimes,servings,mode) => {
     const decoded = decodeURIComponent(search);
-    console.log(decoded)
     let url = '';
+
     if(decoded.length > 0 ){
         if(cookTimes.length > 0 && servings)
-            url = `/api/recipes${decoded}&cookTimes=${cookTimes}&servings=${servings}`; 
+            url = `/api/recipes${decoded}&cookTimes=${cookTimes}&servings=${servings}&mode=${mode}`; 
 
         else if(cookTimes.length > 0 && !servings)
-            url = `/api/recipes${decoded}&cookTimes=${cookTimes}`; 
+            url = `/api/recipes${decoded}&cookTimes=${cookTimes}&mode=${mode}`; 
 
         else if(cookTimes.length === 0 && servings)
-            url = `/api/recipes${decoded}&servings=${servings}`; 
-            
-        else
-            url = `/api/recipes${decoded}`;        
+            url = `/api/recipes${decoded}&servings=${servings}&mode=${mode}`; 
+        
+        else 
+            url = '/api/recipes'
     }
 
-    else 
-        url = '/api/recipes'
+    else {
+        if(cookTimes.length > 0 && servings)
+        url = `/api/recipes?cookTimes=${cookTimes}&servings=${servings}&mode=${mode}`; 
+
+        else if(cookTimes.length > 0 && !servings)
+            url = `/api/recipes?cookTimes=${cookTimes}&mode=${mode}`; 
+
+        else if(cookTimes.length === 0 && servings)
+            url = `/api/recipes?servings=${servings}&mode=${mode}`; 
+            
+        else
+            url = `/api/recipes?mode=${mode}`; 
+    }
+
         
     const res = await fetch(url);
-    console.log(res)
+    //console.log(res)
     return await res.json();
 
 }
@@ -35,6 +47,7 @@ export const getFavRecipes = async (user) =>{
         return jsonData[0].Favorites.map(obj =>
             ({title : obj.recipeTitle , 
             id : obj._id,
+            likes:obj.likes,
             ingredients:obj.ingredients,
             instructions:obj.instructions,
             images:obj.image,
@@ -46,13 +59,13 @@ export const getFavRecipes = async (user) =>{
 }
 
 export async function getFavorites(user){
-    console.log(user)
+    //console.log(user)
     const res = await fetch(`/api/users/${user}/favorites/show`);
     return await res.json();
 }
 
 export async function addFavorites(user,recipeID){
-    console.log(user,recipeID)
+    //console.log(user,recipeID)
     const res = await fetch(`/api/users/${user}/favorites/add/${recipeID}`);
     return await res.json();
 }
@@ -185,4 +198,11 @@ export async function getMyRecipes(userid){
 export function getImgbb(url){
     console.log("in ImageSearch API");
     return fetch("/api/imgbb/?url="+url, {method: 'POST'}).then(res => res.json());
+}
+
+export async function getPopularChips(){
+    const res = await fetch(`/api/popularSearch`);
+    const data = await res.json();
+    console.log(data);
+    return data;
 }

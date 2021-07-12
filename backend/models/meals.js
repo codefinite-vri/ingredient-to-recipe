@@ -7,9 +7,9 @@ var meals = new mongoose.Schema({
         //array of object Ids belonging to meal plans
 		{
 			type: mongoose.Schema.Types.ObjectId,
-			ref: 'mealPlan',
+			ref: 'MealPlan',
 		}
     ]
 });
 
-module.exports = mongoose.model('meals', meals);
+module.exports = mongoose.model('Meals', meals);

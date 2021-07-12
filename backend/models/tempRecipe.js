@@ -16,4 +16,4 @@ var tempRecipeSchema = new mongoose.Schema({
     maxServings:Number
 });
 
-module.exports = mongoose.model('tempRecipe', tempRecipeSchema);
+module.exports = mongoose.model('TempRecipe', tempRecipeSchema);

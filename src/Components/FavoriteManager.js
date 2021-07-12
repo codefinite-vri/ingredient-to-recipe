@@ -12,20 +12,25 @@ export function FavoriteManager(props){
     const [change,setChange] = React.useState();
 
     const history = useHistory();
+    //console.log(props)
 
     const getAll = async() =>{
       const data = await getFavorites(currentUser.email);  
-      setFavs(data[0].Favorites)      
+      setFavs(data[0].Favorites)
+      if(props.recChange !== undefined)   
+        props.setRecChange(!props.recChange)   
     }
 
     const addFav = async() => {
             if(currentUser === null)
             sendLogin();
         else
-        {console.log(props.id)
-          setIsLiked(true);
+        {//console.log(props.id)
+          //setIsLiked(true);
+          addFavorites(currentUser.email,props.id);
           setChange(!change)
-          await addFavorites(currentUser.email,props.id);
+          if(props.changed)
+            props.setChanged(!props.changed)
         console.log('add to favs')
 }
     }
@@ -35,9 +40,12 @@ export function FavoriteManager(props){
           sendLogin();
       else
       {
-        setIsLiked(false);
-        setChange(!change)
-        await delFavorites(currentUser.email,props.id);
+        //setIsLiked(false);
+          delFavorites(currentUser.email,props.id);
+          if(props.changed)
+            props.setChanged(!props.changed)
+          setChange(!change)
+
 }
     }
   
@@ -52,6 +60,7 @@ export function FavoriteManager(props){
     },[favs])
 
     useEffect(() =>{
+      console.log('in change')
         if(currentUser !== null)
       getAll();
     },[change])

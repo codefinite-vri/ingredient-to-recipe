@@ -293,7 +293,7 @@ class MobileMenu extends Component {
             </NavItem>
             <NavItem className="nav-item-n ham" onClick={this.showNav}>
               <NavLink href="">
-                <i class="fas fa-bars" />
+                <i className="fas fa-bars" />
               </NavLink>
             </NavItem>
             <NavItem className="nav-item-n left-nav">

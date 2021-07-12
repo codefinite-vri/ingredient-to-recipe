@@ -7,4 +7,4 @@ var dadiKeNuskeSchema = new mongoose.Schema({
 	methods: String
 });
 
-module.exports = mongoose.model('dadiKeNuske', dadiKeNuskeSchema,"dadiKeNuske");
+module.exports = mongoose.model('DadiKeNuske', dadiKeNuskeSchema,"dadiKeNuske");

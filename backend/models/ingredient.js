@@ -5,4 +5,4 @@ var ingredientSchema = new mongoose.Schema({
     Ingredients:[String]
 });
 
-module.exports = mongoose.model('ingredient', ingredientSchema);
+module.exports = mongoose.model('Ingredient', ingredientSchema);

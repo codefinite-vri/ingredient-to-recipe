@@ -8,8 +8,8 @@ var mealPlanSchema = new mongoose.Schema({
     notes:String,
     recipeID:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: "recipe"
+        ref: "Recipe"
     }
 });
 
-module.exports = mongoose.model('mealPlan', mealPlanSchema);
+module.exports = mongoose.model('MealPlan', mealPlanSchema);

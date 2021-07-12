@@ -11,6 +11,6 @@ var recipeSchema = new mongoose.Schema({
       {type:  String}
     ],
     maxServings:Number,
+    likes:Number
 });
-
-module.exports = mongoose.model('recipe', recipeSchema);
+module.exports =  mongoose.model('Recipe', recipeSchema);

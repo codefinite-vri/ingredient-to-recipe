@@ -1,7 +1,5 @@
 import React from 'react'
 import './Card.scss'
-import ShareIcon from '@material-ui/icons/Share';
-import {IconButton} from '@material-ui/core';
 import CardActions from '@material-ui/core/CardActions';
 import {Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
@@ -12,7 +10,7 @@ import SocialMediaIntegration from './SocialMediaIntegration'
 
 export default function Card(props) {
 
-
+  
     return (
         <div className="card">
           {/*error && <Alert variant="danger">{error}</Alert>*/}
@@ -22,12 +20,15 @@ export default function Card(props) {
                 className="card__image"/>
                 <h4 className="card__title">{props.title}</h4>
                 <p className="card__description">{props.servings}</p>
+                <p className="card__description">{props.likes} likes</p>
                 <CardActions disableSpacing>
                 <FavoriteManager
+                      setRecChange={props.setRecChange}
+                      recChange={props.recChange}
                       id={props.id}
                       isMyFav={props.isMyFav}
                       changed={props.changed}
-                      setChanged={props.setChanged}
+                      setChanged={props.setChanged} //changed and setChanged come from myfavourites page
                 />  
         <SocialMediaIntegration title={props.title} url={`localhost:3000/full-recipe/${props.id}`} />
 
@@ -52,10 +53,10 @@ export default function Card(props) {
         <Button variant="outline-danger" className="btn btn-md m-2">
           View Recipe
           </Button>
-        </Link>
+        </Link>   
       </CardActions>
-      
-        </div>
+       
+       </div>
         </div>
     )
 }
