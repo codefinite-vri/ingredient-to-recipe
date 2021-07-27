@@ -2,8 +2,7 @@ import Carousel from "react-multi-carousel";
 import React, {useState , useEffect} from 'react'
 import "react-multi-carousel/lib/styles.css";
 import Card from './Card'
-import {getRecipes} from '../api.js'
-import { useLocation } from 'react-router'
+
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
@@ -23,25 +22,12 @@ const responsive = {
     items: 1
   }
 };
-export default function RecipeCarousel() {
+export default function RecipeCarousel(props) {
     const [recipes, setRecipes] = useState([]);
-    const [mode,setMode] = useState('Recipe');
-    const location = useLocation();
 
-    const fetchRecipes=async()=>{
-        try{
-         const rec = await getRecipes(location.search);
-         setRecipes(rec);
-        }catch(error){
-          console.log(error);
-        }  
-      }
+    useEffect(() => setRecipes(props.recipes))
 
-      useEffect(() => {
-        if(location.state !== undefined)
-          setMode(location.state.mode)
-          fetchRecipes();
-      },[location.search]);
+
     return(
         <>
             <Carousel responsive={responsive}>
@@ -54,7 +40,8 @@ export default function RecipeCarousel() {
                     title = {r.recipeTitle}
                     instructions = {r.instructions}
                     ingredients = {r.ingredients}
-                    img = {r.image}          
+                    img = {r.image}   
+                    likes={r.likes}       
                     servings={r.servings}
                     ></Card> </div>)
             }
