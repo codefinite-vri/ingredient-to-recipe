@@ -1,10 +1,21 @@
 
 export const getRemedies = () => fetch("/api/home-remedies").then(res => res.json());
 
-export const getRecipes = async (search,cookTimes,servings,mode) => {
-    const decoded = decodeURIComponent(search);
-    let url = '';
+export const getRecipes = async (search,cookTimes,servings,mode,allergies) => {
 
+    let obj = {mode:mode, searchTerm:search, cookTimes:cookTimes, servings:servings,allergies:allergies}
+    //console.log(obj)
+    const res = await fetch(`/api/recipes`,
+        { method: 'POST', 
+        headers: 
+            {   'Content-Type':'application/json',
+                'Accept': 'application/json'
+            }, 
+    body: JSON.stringify(obj)});
+    return await res.json();
+    
+/*    const decoded = decodeURIComponent(search);
+    let url = '';
     if(decoded.length > 0 ){
         if(cookTimes.length > 0 && servings)
             url = `/api/recipes${decoded}&cookTimes=${cookTimes}&servings=${servings}&mode=${mode}`; 
@@ -37,7 +48,7 @@ export const getRecipes = async (search,cookTimes,servings,mode) => {
     const res = await fetch(url);
     //console.log(res)
     return await res.json();
-
+*/
 }
 
 export const getFavRecipes = async (user) =>{
@@ -134,6 +145,7 @@ export async function editMeal(user,id,meal)
 
 export async function getSurpriseRecipe(user,allergenArr,randomIng){
     const surprise = {email:user, allergens: allergenArr , ing:randomIng};
+    //console.log(surprise)
     const res = await fetch(`/api/surprise-recipe`,
     { method: 'POST', 
     headers: {'Content-Type':'application/json',}, 
@@ -202,6 +214,20 @@ export function getImgbb(url){
 
 export async function getPopularChips(){
     const res = await fetch(`/api/popularSearch`);
+    const data = await res.json();
+    console.log(data);
+    return data;
+}
+
+export async function getAllergens(email){
+    const res = await fetch(`/api/users/${email}/allergens`);
+    const data = await res.json();
+    console.log(data);
+    return data;
+}
+
+export async function getIngredients(){
+    const res = await fetch(`/api/ingredients`);
     const data = await res.json();
     console.log(data);
     return data;

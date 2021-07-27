@@ -6,6 +6,9 @@ import { useLocation } from 'react-router'
 import SearchManager from './Search'
 import RecipeFilter from './RecipeFilter'
 import {Col,Row,Container} from 'react-bootstrap'
+import {useAuth} from '../Contexts/AuthContext'
+import { getAllergens } from '../api';
+
 
 export default function Recipes () {
     const [recipes, setRecipes] = useState([]);
@@ -21,13 +24,26 @@ export default function Recipes () {
     });
     const [slider,setSlider] = React.useState(5)
     const[rangeArr, setRangeArr] = useState([]);
+    const {currentUser} = useAuth();
     const [allergenName,setAllergenName] = React.useState([]);
     const [recChange,setRecChange] = useState(false);
+
+    const getUserAllergens = async() =>{
+      const data = await getAllergens(currentUser.email)
+      console.log(data)
+     setAllergenName(data)
+    }
+    
+    useEffect(() => {
+        if(currentUser)
+           getUserAllergens();
+    },[])
 
     const fetchRecipes=async()=>{
         try{
           console.log('in fetch rec')
-         const rec = await getRecipes(location.search,rangeArr,slider,mode);
+          const search = location.state ? location.state.search : '' ;
+         const rec = await getRecipes(search,rangeArr,slider,mode,allergenName);
          setRecipes(rec);
         }catch(error){
           console.log(error);
@@ -39,8 +55,7 @@ export default function Recipes () {
         if(location.state !== undefined)
           setMode(location.state.mode)
           fetchRecipes();
-      },[location.search,rangeArr,slider,recChange]);
-
+      },[location.state,rangeArr,slider,recChange,allergenName]);
 
         return (
             <Container>  

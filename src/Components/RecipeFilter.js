@@ -66,7 +66,7 @@ const MenuProps = {
 
 export default function RecipeFilter(props) {
   const classes = useStyles();
-  
+
 
   const handleChange = (event) => {
     props.setRanges({ ...props.ranges, [event.target.name]: event.target.checked });
@@ -171,7 +171,7 @@ const names = [
           value={props.allergenName}
           onChange={handleAllergens}
           input={<Input />}
-          renderValue={(selected) => selected.join(', ')}
+          renderValue={(selected) => selected.length + ' selected'}
           MenuProps={MenuProps}
         >
           {names.map((name) => (
