@@ -798,8 +798,8 @@ app.get('/api/tempRecipes',(req,res) =>{
 //get myrecipes
 app.get('/api/users/:userid/myRecipes',(req,res) =>{
     MyRecipe.find({userID: req.params.userid})
-    .populate({path: 'AcceptedRecipes', model: 'recipe'})
-    .populate({path: 'PendingRecipes', model: 'tempRecipe'}).exec((err,myrecs) => {
+    .populate({path: 'AcceptedRecipes', model: 'Recipe'})
+    .populate({path: 'PendingRecipes', model: 'TempRecipe'}).exec((err,myrecs) => {
         if(err)
             console.log(err)
             
