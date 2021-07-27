@@ -270,7 +270,7 @@ export default function SurpriseRecipes() {
   return (
       <>
       <center>
-        
+        <h2>Surprise Recipe</h2>
       <div>
     <FormControl className="allerg">
     <InputLabel>Musketeer #1</InputLabel>
