@@ -19,8 +19,8 @@ export function AdminRoute(){
     },[])
 
     return(
-        currentUser.email === process.env.REACT_APP_ADMIN1 ||currentUser.email === process.env.REACT_APP_ADMIN2 
-        ||currentUser.email === process.env.REACT_APP_ADMIN3 ||currentUser.email === process.env.REACT_APP_ADMIN4 ?          
+        <div>
+        {currentUser.email === process.env.REACT_APP_ADMIN1 ||currentUser.email === process.env.REACT_APP_ADMIN2 ||currentUser.email === process.env.REACT_APP_ADMIN3 ||currentUser.email === process.env.REACT_APP_ADMIN4 ?          
         <div>
             <h1 align="center">Pending recipes</h1>
             <Table striped bordered hover responsive>
@@ -58,5 +58,7 @@ export function AdminRoute(){
         </div>
         :
         <Redirect to='/not-found'/>
+                }
+        </div>
     );
 }
