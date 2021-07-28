@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AddRecipe() {
+export default function AddRecipe(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const {currentUser} = useAuth();
@@ -66,8 +66,8 @@ export default function AddRecipe() {
           alert('Recipe submitted successfully')
         else 
           alert('Recipe submission unsuccessful. Please try again later.')
-        
           setOpen(false);
+          props.setRerender(true)
   }
 
   const formik = useFormik({
