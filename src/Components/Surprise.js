@@ -20,7 +20,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import InputBase from '@material-ui/core/InputBase';
-import { getSurpriseRecipe } from '../api';
+import { getMealRecipe, getSurpriseRecipe } from '../api';
 import { white } from 'colorette';
 import {getAllergens ,getIngredients} from '../api'
 
@@ -165,6 +165,7 @@ export default function SurpriseRecipes() {
   const [time, setTime] = React.useState('');
   const [recipe,setRecipe] = React.useState();
   const[ingrs, setIngrs] = React.useState([]);
+  const [rerender,setRerender] = React.useState(false);
   const [err,setError] = React.useState('')
   const [allergens, setAllergens] = React.useState([]);
 
@@ -252,6 +253,17 @@ export default function SurpriseRecipes() {
     }*/
 
   }
+
+  const getUpdatedRec = async() =>{
+    if(recipe)
+    {const data = await getMealRecipe(recipe._id);
+    setRecipe(data);
+      console.log(data)
+  }
+  }
+
+  useEffect(() => {getUpdatedRec();
+  },[rerender])
 
   useEffect(() =>{
     console.log(allergens)
@@ -350,8 +362,11 @@ export default function SurpriseRecipes() {
                 title={recipe.recipeTitle}
                 instructions={recipe.instructions}
                 ingredients={recipe.ingredients}
+                likes={recipe.likes}
                 img={recipe.image}
                 servings={recipe.servings}
+                surprise={setRerender}
+                rerender={rerender}
                 />
                 :
                 <p>{err}</p>
