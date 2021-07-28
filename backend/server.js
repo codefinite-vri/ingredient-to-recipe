@@ -278,6 +278,7 @@ app.get('/api/recipes',(req,res) => {
                 }
             }).limit(12).sort({ score : { $meta : 'textScore' } });
 }});
+*/
 
 app.get('/api/recipes/:recipeID', (req,res)=>{
     Recipe.findById(req.params.recipeID,(err,recFound) =>{
@@ -289,7 +290,7 @@ app.get('/api/recipes/:recipeID', (req,res)=>{
     })
 })
 
-*/
+
 
 
 app.post('/api/createShop',(req,res) => {
