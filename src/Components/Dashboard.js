@@ -89,7 +89,6 @@ export default function UserProfile() {
     useEffect(() => {
       getMyRecipeData();
     },[])
-
   
     const handleChangeRowsPerPage = (event) => {
       setRowsPerPage(+event.target.value);
@@ -141,9 +140,11 @@ export default function UserProfile() {
                             </center>
                             </Col>
                             <h2 className="title-dash">My Approved Recipes</h2>
-                                <RecipeCarousel/>
-                            <h2 className="title-dash">My Favourites</h2>
-                                <RecipeCarousel/>
+                                <RecipeCarousel
+                                  recipes={accepted}
+                                />
+                            {/*<h2 className="title-dash">My Favourites</h2>
+                                <RecipeCarousel/>*/}
                             <h2 className="title-dash">Pending Recipes</h2>
                             <Paper elevation={3}>
                             <TableContainer className={classes.container}>

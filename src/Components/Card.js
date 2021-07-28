@@ -20,13 +20,14 @@ export default function Card(props) {
                 className="card__image"/>
                 <h4 className="card__title">{props.title}</h4>
                 <p className="card__description">{props.servings}</p>
-                <p className="card__description">{props.likes} likes</p>
+                <p className="card__description">
+                  {!props.likes ? 0: props.likes} likes</p>
                 <CardActions disableSpacing>
                 <FavoriteManager
-                      setRecChange={props.setRecChange}
+                      setRecChange={props.setRecChange} // from recipes
                       recChange={props.recChange}
                       id={props.id}
-                      isMyFav={props.isMyFav}
+                      isMyFav={props.isMyFav} //checks if the page is myfavourites page
                       changed={props.changed}
                       setChanged={props.setChanged} //changed and setChanged come from myfavourites page
                 />  

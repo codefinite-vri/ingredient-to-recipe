@@ -22,7 +22,7 @@ export default function MyFavorites(){
     }
 
     useEffect(() =>{
-        //console.log('reloading favs')
+        console.log('reloading favs')
             getAll();
     },[changed])
 

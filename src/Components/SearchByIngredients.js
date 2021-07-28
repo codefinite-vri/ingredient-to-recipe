@@ -62,8 +62,8 @@ const removeChipTags =(index,tag) => {
   const handleClick = () =>{
       history.push({
       pathname: '/recipes',
-      state:{mode: 'Ingredient'},
-      search : `search_query=${searchTerm}`});
+      state:{mode: 'Ingredient', search : searchTerm },
+      });
   }
 
   return (

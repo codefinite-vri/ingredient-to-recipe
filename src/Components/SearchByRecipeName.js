@@ -14,8 +14,7 @@ export default function SearchByName(){
   const handleClick = () =>{
     history.push({
       pathname: '/recipes',
-      search : `search_query=${searchTerm}`,
-      state: { mode : 'Recipe'}});
+      state: { mode : 'Recipe', search : searchTerm}});
   }
 
   const handleKeyDown = (keyEvent) =>{
