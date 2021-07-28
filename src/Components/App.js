@@ -35,8 +35,9 @@ import Integration from './Integration'
 import PrivacyPolicy from './PrivacyPolicy'
 import { AdminRoute } from './AdminRoute';
 import { NotFound } from './NotFound';
-import {UserRecipe} from './UserRecipe'
 import UserProfile from './UserProfile'
+import {UserRecipe} from './UserRecipe';
+import SharedRecipe from './SharedRecipe'
 
 function App() {
   
@@ -83,6 +84,7 @@ function App() {
               <PrivateRoute path="/admin-route" component={AdminRoute}/>
               <Route path='/not-found' component={NotFound}/>
               <Route path='/user-recipe' component={UserRecipe}/>
+              <Route path='/recipe/:recipeid' component={SharedRecipe}/>
               
             </Switch>
           </AuthProvider>

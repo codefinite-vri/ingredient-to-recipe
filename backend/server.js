@@ -278,6 +278,7 @@ app.get('/api/recipes',(req,res) => {
                 }
             }).limit(12).sort({ score : { $meta : 'textScore' } });
 }});
+*/
 
 app.get('/api/recipes/:recipeID', (req,res)=>{
     Recipe.findById(req.params.recipeID,(err,recFound) =>{
@@ -289,7 +290,7 @@ app.get('/api/recipes/:recipeID', (req,res)=>{
     })
 })
 
-*/
+
 
 
 app.post('/api/createShop',(req,res) => {
@@ -653,11 +654,11 @@ app.post('/api/tempRecipes/add',(req,res) => {
                             { $push: { PendingRecipes: newTempRecipe._id } },{upsert:true,new:true},(err,updatePRec) =>{
                                 if(err) {
                                     console.log(err);
-                                    return false;
+                                    res.json(false);
                                 }
                                 else {
                                     //console.log(updatePRec);
-                                    return true;
+                                    res.json(true);
                                 }
                             }
                             );
@@ -739,8 +740,8 @@ app.post('/api/tempRecipes/accept', (req,res) =>{
    
         TempRecipe.findByIdAndDelete(recipeID,(err,rec) =>{
             if(err)
-                {console.log(err); return false;}
-            else return true;
+                {console.log(err); res.json(false);}
+            else res.json(true);
         })
 })
 
