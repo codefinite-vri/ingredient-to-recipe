@@ -373,6 +373,9 @@ class MobileMenu extends Component {
                 <div className="drop__item" ref={this.dropNav1}>
                   <Nav vertical>
                     <NavItem className="nav-item-n">
+                      <NavLink href="/dashboard">Dashboard</NavLink>
+                    </NavItem>
+                    <NavItem className="nav-item-n">
                       <NavLink href="/settings">Settings</NavLink>
                     </NavItem>
                     <NavItem className="nav-item-n">

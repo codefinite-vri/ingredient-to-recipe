@@ -197,7 +197,7 @@ export default function UserProfile() {
                                 <tr>
                                   <th>#</th>
                                   <th>Recipe Title</th>
-                                  <th>Upload Date</th>
+                                  <th>Rejection Date</th>
                                   <th>Comment</th>
                                 </tr>
                               </thead>
@@ -206,7 +206,7 @@ export default function UserProfile() {
                                 <tr>
                                   <td>{index+1}</td>
                                   <td>{rej.recipeTitle}</td>
-                                  <td>{rej.uploadDate}</td>
+                                  <td>{rej.rejectionDate.split('T')[0]}</td>
                                   <td>{rej.comment}</td>
                                 </tr>
                                 )}
