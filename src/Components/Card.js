@@ -31,7 +31,7 @@ export default function Card(props) {
                       changed={props.changed}
                       setChanged={props.setChanged} //changed and setChanged come from myfavourites page
                 />  
-        <SocialMediaIntegration title={props.title} url={`localhost:3000/full-recipe/${props.id}`} />
+        <SocialMediaIntegration title={props.title} url={`localhost:3000/recipe/${props.id}`} />
 
       <MealHandler
       recipe={props}
