@@ -66,7 +66,8 @@ export default function AddRecipe() {
           alert('Recipe submitted successfully')
         else 
           alert('Recipe submission unsuccessful. Please try again later.')
-          window.location.reload();
+        
+          setOpen(false);
   }
 
   const formik = useFormik({

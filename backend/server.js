@@ -653,11 +653,11 @@ app.post('/api/tempRecipes/add',(req,res) => {
                             { $push: { PendingRecipes: newTempRecipe._id } },{upsert:true,new:true},(err,updatePRec) =>{
                                 if(err) {
                                     console.log(err);
-                                    return false;
+                                    res.json(false);
                                 }
                                 else {
                                     //console.log(updatePRec);
-                                    return true;
+                                    res.json(true);
                                 }
                             }
                             );
