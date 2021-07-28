@@ -12,7 +12,6 @@ export function FavoriteManager(props){
     const [change,setChange] = React.useState();
 
     const history = useHistory();
-    //console.log(props)
 
     const getAll = async() =>{
       const data = await getFavorites(currentUser.email);  
@@ -26,29 +25,30 @@ export function FavoriteManager(props){
             sendLogin();
         else
         {//console.log(props.id)
-          //setIsLiked(true);
+          setIsLiked(true); //illusion of faster response
           addFavorites(currentUser.email,props.id);
           setChange(!change)
-          if(props.changed)
-            props.setChanged(!props.changed)
         console.log('add to favs')
 }
     }
 
     const delFav = async() =>{
-          if(currentUser === null)
-          sendLogin();
-      else
-      {
-        //setIsLiked(false);
-          delFavorites(currentUser.email,props.id);
-          if(props.changed)
-            props.setChanged(!props.changed)
-          setChange(!change)
-
-}
+        setIsLiked(false); //illusion of faster response
+        console.log('deleting')
+         delFavorites(currentUser.email,props.id);
+         console.log('deleted')
+         setChange(!change)
+        
     }
   
+    const delMyFav = async() =>{
+      console.log('deleting')
+       delFavorites(currentUser.email,props.id);
+       console.log('deleted')  
+      props.setChanged(!props.changed)
+        
+  }
+
     const sendLogin = () =>{
         history.push({
             pathname: '/login',
@@ -89,7 +89,7 @@ export function FavoriteManager(props){
           <Button
           type="button"
           variant="danger"
-          onClick={delFav}
+          onClick={delMyFav}
           >
             <FavoriteIcon/>
           </Button>

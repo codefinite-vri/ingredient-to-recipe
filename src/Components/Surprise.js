@@ -22,6 +22,7 @@ import NativeSelect from '@material-ui/core/NativeSelect';
 import InputBase from '@material-ui/core/InputBase';
 import { getSurpriseRecipe } from '../api';
 import { white } from 'colorette';
+import {getAllergens ,getIngredients} from '../api'
 
 const names = [
   'Tomato',
@@ -159,15 +160,41 @@ export default function SurpriseRecipes() {
   const [success, setSuccess] = React.useState(false);
   const timer = React.useRef();
   const theme = useTheme();
-  const [randomIng, setRandomIng] = React.useState('');
-  const currentUser = useAuth();
+  const [randomIng, setRandomIng] = React.useState([]);
+  const {currentUser} = useAuth();
   const [time, setTime] = React.useState('');
   const [recipe,setRecipe] = React.useState();
+  const[ingrs, setIngrs] = React.useState([]);
+  const [err,setError] = React.useState('')
   const [allergens, setAllergens] = React.useState([]);
 
   const buttonClassname = clsx({
     [classes.buttonSuccess]: success,
   });
+
+  /*const getUserAllergens = async() =>{
+    const data = await getAllergens(currentUser.email);
+    setAllergens(data);
+  }
+
+  const getIng = async() =>{
+    //setLoading(true);
+      const data = await getIngredients();
+      //setLoading(false)
+      setIngrs(data);
+  }  
+
+  useEffect(()=> {
+     // getIng();
+  },[])
+
+
+  useEffect(() => 
+    {
+      if(currentUser)
+        getUserAllergens() 
+  }
+  ,[])*/
 
   React.useEffect(() => {
     return () => {
@@ -186,55 +213,95 @@ export default function SurpriseRecipes() {
     }
     if(randomIng === '')
       {
-        alert('Please click on shuffler to choose your hero ingredient!')
+        alert('Please click on shuffler to choose your 3 musketeers!')
       }
-    const res = await getSurpriseRecipe(currentUser.email,allergens,randomIng);
-    setRecipe(res);
+    const res = await getSurpriseRecipe(currentUser.email,allergens,randomIng.join('+.*'));
+    console.log(res)
+    if(JSON.stringify(res) === '{}')
+      setError("Whoops! Looks like we don't have any recipes with that ingredient combination. Try again!")
+    
+    else {
+      setError('')  
+      setRecipe(res);
+    }
   };
 
+  const randomizeHandler = () =>{
+        // Shuffle array
+    const shuffled = ings.sort(() => 0.5 - Math.random());
 
-  const randomizeHandler = ()=>{
+    // Get sub-array of first 3 elements after shuffled
+    let selected = shuffled.slice(0, 3);
+
+    setRandomIng(selected)
+    /*let tmp = [],i=0
+    while(i < 3){
     let r = Math.floor(Math.random() * ings.length);
+    tmp[i] = ings[r]
+    i++ 
+    }
+    console.log(tmp)
+    setRandomIng(tmp)   
     while(true){
       if(allergens.includes(ings[r]))
         r = Math.floor(Math.random() * ings.length);
       else{
-        setRandomIng(ings[r]);
+        setRandomIng({...randomIng, ingIndex: ings[r]});
         break;
       }
-    }
+    }*/
 
   }
 
   useEffect(() =>{
+    console.log(allergens)
     if(allergens.includes(randomIng))
       setRandomIng('');
   },[allergens])
 
   const handleChange = (event) => {
-    setAllergens(event.target.value);
-    console.log(allergens);
+    let tmp = allergens;
+    tmp.push(event.target.value);
+    console.log(tmp)
+    alert(event.target.value)
+    setAllergens(tmp);
   };
 
   return (
       <>
       <center>
-        
+        <h2>Surprise Recipe</h2>
       <div>
     <FormControl className="allerg">
-    <InputLabel>Hero ingredient</InputLabel>
+    <InputLabel>Musketeer #1</InputLabel>
     <br/>   <br/>
-          <Button onClick={randomizeHandler}><ShuffleIcon/></Button><p>{randomIng}</p>
+          <p>{randomIng[0]}</p>
+        </FormControl>
+
+        <FormControl className="allerg">
+    <InputLabel>Musketeer #2</InputLabel>
+    <br/>   <br/>
+          <p>{randomIng[1]}</p>
+        </FormControl>
+
+        <FormControl className="allerg">
+    <InputLabel>Musketeer #3</InputLabel>
+    <br/>   <br/>
+
+
+         <p>{randomIng[2]}</p>
+         <Button onClick={randomizeHandler}><ShuffleIcon/></Button>
         </FormControl>
         {loading && <CircularProgress size={24} className={classes.buttonProgress} />}
       
-      <FormControl className="allerg">
+
+     {/* <FormControl className="allerg">
         <InputLabel >Allergens</InputLabel>
         <Select
           multiple
           value={allergens}
           onChange={handleChange}
-          input={<Input id="select-multiple-chip" />}
+          input={<Input />}
           renderValue={(selected) => (
             <div className={classes.chips}>
               {selected.map((value) => (
@@ -250,7 +317,7 @@ export default function SurpriseRecipes() {
             </MenuItem>
           ))}
         </Select>
-      </FormControl>
+         </FormControl>*/}
     </div>
     <div className={classes.root}>
           <div className={classes.wrapper}>
@@ -287,7 +354,7 @@ export default function SurpriseRecipes() {
                 servings={recipe.servings}
                 />
                 :
-                <></>
+                <p>{err}</p>
             }
     </div>
     </center>
