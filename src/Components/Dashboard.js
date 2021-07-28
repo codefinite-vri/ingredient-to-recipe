@@ -73,6 +73,7 @@ export default function Dashboard() {
     const [pending,setPending] = useState([]); 
     const [rejected,setRejected] = useState([]); 
     const [accepted,setAccepted] = useState([]); 
+    const [rerender,setRerender] = useState(false);
   
     const handleChangePage = (event, newPage) => {
       setPage(newPage);
@@ -88,7 +89,7 @@ export default function Dashboard() {
 
     useEffect(() => {
       getMyRecipeData();
-    },[])
+    },[rerender])
   
     const handleChangeRowsPerPage = (event) => {
       setRowsPerPage(+event.target.value);
@@ -134,7 +135,9 @@ export default function Dashboard() {
                             <center>
                                 <Row className="d-flex justify-content-around mt-2">
                                     <Link to="/update-profile" className="btn SendBtn btnpadd">Update Profile</Link>
-                                    <AddRecipe/>
+                                    <AddRecipe
+                                      setRerender={setRerender}
+                                    />
                                     <Link to="/shopping-list" className="btn SendBtn btnpadd">Shopping List</Link>
                                 </Row>
                             </center>
