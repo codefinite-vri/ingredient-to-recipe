@@ -740,8 +740,8 @@ app.post('/api/tempRecipes/accept', (req,res) =>{
    
         TempRecipe.findByIdAndDelete(recipeID,(err,rec) =>{
             if(err)
-                {console.log(err); return false;}
-            else return true;
+                {console.log(err); res.json(false);}
+            else res.json(true);
         })
 })
 
