@@ -43,6 +43,8 @@ export default function RecipeCarousel(props) {
                     img = {r.image}   
                     likes={r.likes}       
                     servings={r.servings}
+                    setCarousel={props.setCarousel}
+                    carousel={props.carousel}
                     ></Card> </div>)
             }
             </Carousel>

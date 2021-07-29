@@ -26,6 +26,8 @@ export default function Card(props) {
                       setRecChange={props.setRecChange} // from recipes
                       recChange={props.recChange}
                       id={props.id}
+                      carousel={props.carousel}
+                      setCarousel={props.setCarousel}
                       isMyFav={props.isMyFav} //checks if the page is myfavourites page
                       changed={props.changed}
                       setChanged={props.setChanged} //changed and setChanged come from myfavourites page

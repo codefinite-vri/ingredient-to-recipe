@@ -27,6 +27,8 @@ export function FavoriteManager(props){
         {//console.log(props.id)
           if(props.surprise)
             props.surprise(!props.rerender)
+          if(props.setCarousel)
+            props.setCarousel(!props.carousel)
           setIsLiked(true); //illusion of faster response
           addFavorites(currentUser.email,props.id);
           setChange(!change)
@@ -39,6 +41,10 @@ export function FavoriteManager(props){
         console.log('deleting')
         if(props.surprise)
           props.surprise(!props.rerender)
+
+        if(props.setCarousel)
+          props.setCarousel(!props.carousel)
+          
          delFavorites(currentUser.email,props.id);
          console.log('deleted')
          setChange(!change)
