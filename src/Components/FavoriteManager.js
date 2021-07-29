@@ -25,6 +25,8 @@ export function FavoriteManager(props){
             sendLogin();
         else
         {//console.log(props.id)
+          if(props.surprise)
+            props.surprise(!props.rerender)
           setIsLiked(true); //illusion of faster response
           addFavorites(currentUser.email,props.id);
           setChange(!change)
@@ -35,6 +37,8 @@ export function FavoriteManager(props){
     const delFav = async() =>{
         setIsLiked(false); //illusion of faster response
         console.log('deleting')
+        if(props.surprise)
+          props.surprise(!props.rerender)
          delFavorites(currentUser.email,props.id);
          console.log('deleted')
          setChange(!change)

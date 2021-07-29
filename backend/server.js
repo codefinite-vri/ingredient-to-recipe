@@ -48,7 +48,7 @@ app.get('/api/home-remedies',(req,res) => {
 
 
 app.post('/api/recipes', (req,res) => {
-    console.log(req.body)
+    //console.log(req.body)
     let searchArray = [] , obj_arr = [], query, allergies = '',
     searchTerm = req.body.searchTerm
     const allergArray = req.body.allergies;
@@ -126,7 +126,7 @@ app.post('/api/recipes', (req,res) => {
     
     else query = {} //000
 
-        console.log(query)
+        //console.log(query)
 
     Recipe.find(query,(err,recipesFound) =>{
         if(err) console.log(err);
@@ -138,7 +138,7 @@ app.post('/api/recipes', (req,res) => {
 }
 
 else{ 
-    console.log('in else')
+   // console.log('in else')
     allergies = allergArray.map(aa => '-' + aa).join(' ');
     searchTerm += ' ' + allergies
 
@@ -161,7 +161,7 @@ else{
     else 
         query = {$text : {$search : searchTerm,$caseSensitive :false}} ;
 
-console.log(query)
+//console.log(query)
     Recipe.find( query ,  
         { score : { $meta: "textScore" } } , 
         function(err,recipesFound)
@@ -359,21 +359,21 @@ app.get('/api/userShopList/del/:id/:item',(req,res) => {
 });
 
 app.get('/api/users/:userid/favorites/add/:id' , (req,res) => {
-    console.log(req.params.userid,req.params.id)
+    //console.log(req.params.userid,req.params.id)
     //favorite.exists({ userID: req.params.userid }).then(exists =>{
         //if(exists){
             Favorite.findOneAndUpdate(
                 { userID: req.params.userid }, 
                 { $addToSet: { Favorites: req.params.id } },{new:true,upsert:true},(err,updateFav) =>{
                     if(err) console.log(err);
-                    //else console.log(updateFav);
+                    else{
+                        Recipe.findByIdAndUpdate(req.params.id,{$inc:{likes:1}},{new:true},(err,recUp) =>{
+                            if(err) console.log(err)
+                            //else console.log(recUp)
+                    })
+                    }
                 }
                 );
-
-            Recipe.findByIdAndUpdate(req.params.id,{$inc:{likes:1}},{new:true},(err,recUp) =>{
-                    if(err) console.log(err)
-                    //else console.log(recUp)
-            })
        /* }
         else
         {favorite.create({userID: req.params.userid, 

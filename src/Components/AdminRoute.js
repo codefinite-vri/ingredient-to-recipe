@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 export function AdminRoute(){
     const {currentUser} = useAuth();
     const [tempRecipes,setTempRecipes] = useState([]);
+    console.log(currentUser.email, process.env.REACT_APP_ADMIN2)
 
     const getAllTempRecipes = async() =>{
         const result = await getTempRecipes();

@@ -10,7 +10,6 @@ import SocialMediaIntegration from './SocialMediaIntegration'
 
 export default function Card(props) {
 
-  
     return (
         <div className="card">
           {/*error && <Alert variant="danger">{error}</Alert>*/}
@@ -30,6 +29,8 @@ export default function Card(props) {
                       isMyFav={props.isMyFav} //checks if the page is myfavourites page
                       changed={props.changed}
                       setChanged={props.setChanged} //changed and setChanged come from myfavourites page
+                      surprise={props.surprise}
+                      rerender={props.rerender}
                 />  
         <SocialMediaIntegration title={props.title} url={`localhost:3000/recipe/${props.id}`} />
 
