@@ -66,7 +66,7 @@ export function LoginButton() {
     event.preventDefault();
   }
 
-export default function Dashboard() {
+export default function UserProfile() {
     const classes = useStyles();
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -145,6 +145,8 @@ export default function Dashboard() {
                             <h2 className="title-dash">My Approved Recipes</h2>
                                 <RecipeCarousel
                                   recipes={accepted}
+                                  carousel={rerender}
+                                  setCarousel={setRerender}
                                 />
                             {/*<h2 className="title-dash">My Favourites</h2>
                                 <RecipeCarousel/>*/}
@@ -197,7 +199,7 @@ export default function Dashboard() {
                                 <tr>
                                   <th>#</th>
                                   <th>Recipe Title</th>
-                                  <th>Upload Date</th>
+                                  <th>Rejection Date</th>
                                   <th>Comment</th>
                                 </tr>
                               </thead>
@@ -206,7 +208,7 @@ export default function Dashboard() {
                                 <tr>
                                   <td>{index+1}</td>
                                   <td>{rej.recipeTitle}</td>
-                                  <td>{rej.uploadDate}</td>
+                                  <td>{rej.rejectionDate}</td>
                                   <td>{rej.comment}</td>
                                 </tr>
                                 )}

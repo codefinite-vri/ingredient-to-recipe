@@ -189,6 +189,7 @@ class MobileMenu extends Component {
 
  class NavigationBar extends Component {
   dropNav = React.createRef();
+  dropNav1 = React.createRef();
 
   constructor(props){
     super(props);
@@ -218,16 +219,30 @@ class MobileMenu extends Component {
       this.dropNav.current.style.opacity = '1'
     })
   }
+  over1 = () => {
+    this.dropNav1.current.style.display = 'block'
+    this.opacityTiemOut = setTimeout(() => {
+      this.dropNav1.current.style.opacity = '1'
+    })
+  }
   out = () => {
     this.dropNav.current.style.transition = 'all .5s 1s'
     this.dropNav.current.style.opacity = '0'
+  }
+  out1 = () => {
+    this.dropNav1.current.style.transition = 'all .5s 1s'
+    this.dropNav1.current.style.opacity = '0'
   }
   onHide = () => {
     if (this.dropNav.current.style.opacity === '1') return
     this.dropNav.current.style.display = 'none'
     this.dropNav.current.style.transition = 'all .5s'
   }
-
+  onHide1 = () => {
+    if (this.dropNav.current.style.opacity === '1') return
+    this.dropNav1.current.style.display = 'none'
+    this.dropNav1.current.style.transition = 'all .5s'
+  }
   hideNav = e => {
     document.body.style.overflow = 'visible'
     this.mobileMenu.style.display = 'none'
@@ -346,17 +361,20 @@ class MobileMenu extends Component {
             :
               <div
                 className="drop"
-                onMouseOver={this.over}
-                onMouseOut={this.out}
-                onTransitionEnd={this.onHide}
+                onMouseOver={this.over1}
+                onMouseOut={this.out1}
+                onTransitionEnd={this.onHide1}
               >
                 <NavItem className="nav-item-n right-nav">
                   <NavLink href="#" className="nav-item-n navD right-nav nav-hover caret">
                   Hello, {this.state.currentUser.displayName}
                   </NavLink>
                 </NavItem>
-                <div className="drop__item" ref={this.dropNav}>
+                <div className="drop__item" ref={this.dropNav1}>
                   <Nav vertical>
+                    <NavItem className="nav-item-n">
+                      <NavLink href="/dashboard">Dashboard</NavLink>
+                    </NavItem>
                     <NavItem className="nav-item-n">
                       <NavLink href="/settings">Settings</NavLink>
                     </NavItem>

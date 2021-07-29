@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 export function AdminRoute(){
     const {currentUser} = useAuth();
     const [tempRecipes,setTempRecipes] = useState([]);
+    console.log(currentUser.email, process.env.REACT_APP_ADMIN2)
 
     const getAllTempRecipes = async() =>{
         const result = await getTempRecipes();
@@ -19,8 +20,8 @@ export function AdminRoute(){
     },[])
 
     return(
-        currentUser.email === process.env.REACT_APP_ADMIN1 ||currentUser.email === process.env.REACT_APP_ADMIN2 
-        ||currentUser.email === process.env.REACT_APP_ADMIN3 ||currentUser.email === process.env.REACT_APP_ADMIN4 ?          
+        <div>
+        {currentUser.email === process.env.REACT_APP_ADMIN1 ||currentUser.email === process.env.REACT_APP_ADMIN2 ||currentUser.email === process.env.REACT_APP_ADMIN3 ||currentUser.email === process.env.REACT_APP_ADMIN4 ?          
         <div>
             <h1 align="center">Pending recipes</h1>
             <Table striped bordered hover responsive>
@@ -58,5 +59,7 @@ export function AdminRoute(){
         </div>
         :
         <Redirect to='/not-found'/>
+                }
+        </div>
     );
 }
