@@ -145,6 +145,8 @@ export default function UserProfile() {
                             <h2 className="title-dash">My Approved Recipes</h2>
                                 <RecipeCarousel
                                   recipes={accepted}
+                                  carousel={rerender}
+                                  setCarousel={setRerender}
                                 />
                             {/*<h2 className="title-dash">My Favourites</h2>
                                 <RecipeCarousel/>*/}
@@ -206,7 +208,7 @@ export default function UserProfile() {
                                 <tr>
                                   <td>{index+1}</td>
                                   <td>{rej.recipeTitle}</td>
-                                  <td>{rej.rejectionDate.split('T')[0]}</td>
+                                  <td>{rej.rejectionDate}</td>
                                   <td>{rej.comment}</td>
                                 </tr>
                                 )}
