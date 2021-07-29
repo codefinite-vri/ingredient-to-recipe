@@ -4,7 +4,7 @@ import './FullRecipe.css'
 
 export default function FullRecipe(props) {
     const method = props.location.state.instructions;
-    const ingred = props.location.state.ingredients.split('$ ');
+    const ingred = props.location.state.ingredients.split('$');
     console.log(props.location.state.cookTime)
 
   return (
