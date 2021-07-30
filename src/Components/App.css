@@ -233,3 +233,7 @@ cursor:default!important;
 .social-margin{
   margin:0 10px;
 }
+
+.inline-grid{
+  display:flex;
+}
