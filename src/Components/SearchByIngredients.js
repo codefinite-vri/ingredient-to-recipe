@@ -7,6 +7,8 @@ import Row from 'react-bootstrap/Row'
 import Chip from '@material-ui/core/Chip';
 import CancelIcon from '@material-ui/icons/Cancel';
 import { Col } from 'react-bootstrap';
+import SearchIcon from '@material-ui/icons/Search';
+import {Button} from 'react-bootstrap';
 
 
 export default function SearchByIng () {
@@ -123,7 +125,8 @@ const removeChipTags =(index,tag) => {
             </datalist>
             </label>
         <div className="text-center m-3" >
-        <input type="button" className="btn btn-outline-success" value="Search" variant="outline-success" onClick= {handleClick}/>
+        <Button type="button" onClick={handleClick} className="btn-red">Search <SearchIcon className="white-icon"/></Button>
+        
        </div> </Form></Col>
        </Row>
        </Container>

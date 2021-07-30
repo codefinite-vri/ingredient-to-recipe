@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Form, FormControl, Button, Container}  from 'react-bootstrap'
+import SearchIcon from '@material-ui/icons/Search';
 import { useHistory} from 'react-router-dom'
 
 
@@ -27,15 +28,14 @@ export default function SearchByName(){
       <>
       <Container className="d-flex align-items-center justify-content-center" style={{padding:'0 0 0 0'}}
       >
-            <div className="w-100" style={{maxWidth:"400px" , padding:"20px"}}>
-        <Form onKeyDown={handleKeyDown} inline className="form-center">
-          <FormControl type="text" placeholder="Search" value={searchTerm}
-           className="mr-sm-2 inp" onChange={handleChange}/>
-          <Button type="button" variant="outline-success" onClick={handleClick} >Search</Button>
-        </Form>
+        <div style={{maxWidth:"400px" , padding:"20px"}}>
+          <Form onKeyDown={handleKeyDown} inline className="form-center display-block">
+            <FormControl type="text" placeholder="Search" value={searchTerm} className="mr-sm-2 inp display-block" onChange={handleChange}/>
+            <Button type="button" onClick={handleClick} className="btn-red"><SearchIcon className="white-icon"/></Button>
+          </Form>
         </div>
         </Container>
 
         </>
     )
-}
+} 

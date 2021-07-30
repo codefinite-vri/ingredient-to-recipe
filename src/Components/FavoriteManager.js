@@ -82,7 +82,7 @@ export function FavoriteManager(props){
             <div>      
             {isLiked ?
           <Button
-              variant="danger"
+              className="btn-red"
               onClick={delFav}>
           <FavoriteIcon />
            </Button>   

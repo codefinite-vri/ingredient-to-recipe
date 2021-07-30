@@ -24,7 +24,7 @@ export default function MealHandler(props){
   }
 
   return  <div>
-  <Button variant="outline-primary"
+  <Button className='btn-red'
   onClick={mealHandler}
   ><EventOutlinedIcon/></Button>
   </div>

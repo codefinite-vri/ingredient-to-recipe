@@ -81,6 +81,10 @@ body{
   text-decoration:none !important;
 }
 
+.text-link{
+  text-decoration:none !important;
+  color:black!important;
+}
 
 .MuiButton-label a{
   color:  #C90F03!important;
@@ -199,11 +203,16 @@ body{
   margin-left:10px;
 }
 
+
 .black-cancel{
   color: black!important;
   background-color:  white!important;
 }
 
+.red-icon{
+  color: #C90F03!important;
+  background-color:  transparent!important;
+}
 .padding-less{
   padding:0!important;
 }
@@ -215,4 +224,8 @@ body{
 .shopping-box{
 box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 cursor:default!important;
+}
+
+.display-block{
+  display:inline-block!important;
 }
