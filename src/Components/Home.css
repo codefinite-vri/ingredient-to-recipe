@@ -13,12 +13,14 @@ header {
     justify-content: space-evenly;
     align-items: center;
     text-align: center;
+    margin-left:1.5rem;
+    margin-right:1.5rem;
   }
 
-  .jumbo-bg{
+  /* .jumbo-bg{
     padding-left:1.5rem;
     padding-right:1.5rem;
-  }
+  } */
 
   .intro-logo h1 {
     font-size: 1.8em;
@@ -26,10 +28,13 @@ header {
     font-family: 'Philosopher', sans-serif;
     color: var(--brand-color);
   }
-  @media (min-width: 768px) {
+  @media (min-width: 595px) {
     .intro-logo h1 {
       font-size: 3.5em;
     }
+  }
+  .subtitle{
+    padding-bottom:3em;
   }
   .intro-logo h3 {
     font-size: 1rem;
@@ -86,8 +91,7 @@ header {
 
   .red-button{
     background-color: #C90F03 !important; 
-    border-radius: 20px;
-    
+    border-radius: 20px!important;
   }
   .subtitle{
     margin-bottom:0!important;
@@ -104,4 +108,21 @@ header {
   .navR:hover{
     color:#C90F03;
     text-shadow: 2px 2px 2px #540103;
+  }
+
+  .margin-side-grid{
+    margin:0 30px;
+  }
+
+
+  @media only screen and (max-width: 595px) {
+    .carousel-desktop {
+      display:none!important;
+    }
+    .mobile-design{
+      background-image:url('images/food002.png');
+      background-repeat: no-repeat;
+      background-size: auto;
+      background-position: center;
+    }
   }

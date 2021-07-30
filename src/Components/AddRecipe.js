@@ -1,8 +1,4 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
 import { useFormik, Formik, Form, Field, FieldArray, ErrorMessage } from 'formik';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -10,7 +6,14 @@ import { Link} from 'react-router-dom'
 import {useAuth} from '../Contexts/AuthContext'
 import {useHistory} from 'react-router-dom'
 import CloseIcon from '@material-ui/icons/Close';
+import CancelIcon from '@material-ui/icons/Cancel';
 import {submitRecipe} from '../api.js'
+
+import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
 
 const initialValues = {
   recipeName: '',
@@ -30,35 +33,29 @@ const initialValues = {
   ],
 };
 
-const useStyles = makeStyles((theme) => ({
-  modal: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    keyboard:false,
-    backdrop:"static",
-  },
-  paper: {
-    backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-  },
-}));
-
 export default function AddRecipe(props) {
-  const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const {currentUser} = useAuth();
   const history = useHistory();
+  const [scroll, setScroll] = React.useState('paper');
 
-  const handleOpen = () => {
+  const handleClickOpen = (scrollType) => () => {
     setOpen(true);
+    setScroll(scrollType);
   };
-
   const handleClose = () => {
     setOpen(false);
   };
+
+  const descriptionElementRef = React.useRef(null);
+  React.useEffect(() => {
+    if (open) {
+      const { current: descriptionElement } = descriptionElementRef;
+      if (descriptionElement !== null) {
+        descriptionElement.focus();
+      }
+    }
+  }, [open]);
 
   const addNewRecipe = async(recipe) =>{
         const result = await submitRecipe(currentUser.displayName,currentUser.email,recipe);//returns true or false
@@ -83,22 +80,21 @@ export default function AddRecipe(props) {
       {/* <button type="button" onClick={handleOpen}>
         react-transition-group
       </button> */}
-      <Link className="btn SendBtn" onClick={handleOpen}>Add Recipe</Link>
-      <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        className={classes.modal}
+      <Link className="btn SendBtn" onClick={handleClickOpen('paper')}>Add Recipe</Link>
+      <Dialog
         open={open}
         onClose={handleClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
+        scroll={scroll}
+        aria-labelledby="scroll-dialog-title"
+        aria-describedby="scroll-dialog-description"
       >
-        <Fade in={open}>
-          <div className={classes.paper}>
-          <h1>Add your Own Recipe!</h1>
+      <DialogTitle id="scroll-dialog-title"><h2>ADD YOUR OWN RECIPES<Button className="float-right" onClick={handleClose}><CancelIcon className="black-cred-cancel" style={{fontSize: 35}}/></Button></h2> </DialogTitle>
+         <DialogContent dividers={scroll === 'paper'}>
+        <DialogContentText
+          id="scroll-dialog-description"
+          ref={descriptionElementRef}
+          tabIndex={-1}
+        >
           <Formik
       initialValues={initialValues}
       onSubmit={async (values) => {
@@ -114,7 +110,6 @@ export default function AddRecipe(props) {
           name="recipeName"
           label="Recipe Name"
           onChange={formik.handleChange}
-          value={formik.values.recipeName}
           required="required"
         />
           <TextField
@@ -123,7 +118,6 @@ export default function AddRecipe(props) {
           name="image"
           label="Image"
           onChange={formik.handleChange}
-          value={formik.values.image}
           required="required"
         />
         <TextField
@@ -132,7 +126,6 @@ export default function AddRecipe(props) {
           name="servings"
           label="Servings"
           onChange={formik.handleChange}
-          value={formik.values.servings}
           required="required"
         />
         <TextField
@@ -141,11 +134,10 @@ export default function AddRecipe(props) {
           name="cookTime"
           label="Cook Time"
           placeholder="Cook time(in minutes)"
-          value={formik.values.cookTime}
           onChange={formik.handleChange}
           required="required"
         />
-        <h4 className="title-add">Ingredients</h4>
+        <h5 className="title-add">INGREDIENTS</h5>
         
         <FieldArray name="ingredients">
             {({ insert, remove, push }) => (
@@ -170,14 +162,14 @@ export default function AddRecipe(props) {
                           placeholder="Sugar"
                           type="text"
                           //value={formik.values.ingredients[index].ingName}
-                          label="Ingredient Name"
+                          label="Name"
                           onChange={formik.handleChange}
                           required="required"
                         />
                       </div>
                         <Button
                           type="button"
-                          className="Btn-Margin"
+                          className="Btn-Margin cancel-btn-recipe btn-red"
                           variant="contained"
                           onClick={() => remove(index)}
                         >
@@ -185,7 +177,7 @@ export default function AddRecipe(props) {
                         </Button>
                     </div>
                   ))} 
-                <Button variant="contained"  className="Btn-Margin right-btn"
+                <Button variant="contained"  className="Btn-Margin right-btn btn-red"
                   onClick={() => push({ amount: '', ingName: '' })}
                 >
                   Add Ingredient
@@ -193,7 +185,7 @@ export default function AddRecipe(props) {
               </div>
             )}
           </FieldArray>
-          <h4 className="title-add">Procedure</h4>
+          <h5 className="title-add">PROCEDURE</h5>
           <FieldArray name="procedure">
             {({ insert, remove, push }) => (
               <div>
@@ -214,7 +206,7 @@ export default function AddRecipe(props) {
                       </div>
                         <Button
                           type="button"
-                           className="Btn-Margin"
+                           className="Btn-Margin cancel-btn-recipe btn-red"
                           variant="contained"
                           onClick={() => remove(index)}
                         >
@@ -224,7 +216,7 @@ export default function AddRecipe(props) {
                   ))}
                 <Button
                   type="button" variant="contained"
-                  className="Btn-Margin right-btn"
+                  className="Btn-Margin right-btn btn-red"
                   onClick={() => push({ step: '' })}
                 >
                   Add Step
@@ -232,15 +224,13 @@ export default function AddRecipe(props) {
               </div>
             )}
           </FieldArray>
-        <Button color="red" variant="contained"  className="Btn-Margin" fullWidth type="submit"> 
+        <Button color="red" variant="contained"  className="Btn-Margin btn-red" fullWidth type="submit"> 
           Submit
         </Button>
       </Form>
        )}
-       </Formik>
-          </div>
-        </Fade>
-      </Modal>
+       </Formik></DialogContentText>
+        </DialogContent></Dialog>
     </div>
   );
 }

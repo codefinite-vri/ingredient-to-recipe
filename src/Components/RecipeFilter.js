@@ -7,6 +7,9 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { Slider,ListItemText,MenuItem,InputLabel,Select, Input } from '@material-ui/core';
 import {Col} from 'react-bootstrap'
+import Chip from '@material-ui/core/Chip';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -87,6 +90,22 @@ const names = [
   'Onion',
   'Cheese',
   'Milk',
+  'Mushroom',
+  'Salt',
+  'Sugar',
+  'Chikpeas',
+  'Water',
+  'Rice',
+  'Flour',
+  'Peanut',
+  'Cashew',
+  'Fig',
+  'Butter',
+  'Mustard',
+  'Coriander',
+  'Cloves',
+  'Orange',
+  'Banana',
   'Apple',
   'Peas',
   'Rice',
@@ -154,19 +173,37 @@ const names = [
       </FormControl>
       <div className={classes.root}>
       <FormLabel component="legend">Servings</FormLabel>
-      <Col xs={8} lg={12}>
+      <Col xs={4} sm={6} lg={12} className="padding-allergens">
       <PrettoSlider valueLabelDisplay="on" aria-label="pretto slider"
       onChange={handleSlider}
       min={1}
       max={100}
       marks={[{value:1,label:'1'}]}
-      defaultValue={5} /></Col>
+      defaultValue={5} />
+      </Col>
     </div>
     
-    <Col xs={3}>
-    <FormControl className={classes.allergenFilter}>
-        <InputLabel >Allergens</InputLabel>
-        <Select
+    <Col xs={4} sm={6} className="padding-allergens">
+    <FormControl className={classes.allergenFilter} >
+        <Autocomplete
+        multiple
+        id="tags-filled"
+        options={names.map((option) => option)}
+        freeSolo
+        // value={props.allergenName}
+        onChange={handleAllergens}
+        input={<Input />}
+        renderTags={(value, getTagProps) =>
+          value.map((option, index) => (
+            <Chip variant="outlined" label={option} {...getTagProps({ index })} />
+          ))
+        }
+        renderInput={(params) => (
+          <TextField {...params} variant="outlined" label="Allergens" placeholder="Allergen" />
+        )}
+      />
+      
+        {/* <Select
           multiple
           value={props.allergenName}
           onChange={handleAllergens}
@@ -180,7 +217,7 @@ const names = [
               <ListItemText primary={name} />
             </MenuItem>
           ))}
-        </Select>
+        </Select> */}
       </FormControl>
     </Col>
     </div>

@@ -74,19 +74,23 @@ body{
 .btn-red{
   background-color:#C90F03 !important;
   border-color:  #C90F03!important;
+  color:white !important;
 }
 .text-red{
   color:  #C90F03!important;
   text-decoration:none !important;
 }
 
-.MuiButton-label{
-  /* color:  #C90F03!important; */
+.text-link{
+  text-decoration:none !important;
+  color:black!important;
 }
 
 .MuiButton-label a{
   color:  #C90F03!important;
 }
+
+
 
 .card-deck{
   margin-top: 10px;
@@ -138,6 +142,10 @@ body{
   margin-top: 10px !important;
 }
 
+.cancel-btn-recipe{
+  padding:0px!important;
+  margin-right:14px!important;
+}
 .row1{
   margin-top:0!important;
 }
@@ -150,4 +158,100 @@ body{
 
 .right-btn{
   float:right;
+}
+
+#addItem{
+  display: inline-block;
+  margin-right:10px;
+}
+
+.form-centered{
+  display: flex;
+  justify-content: center;
+}
+
+.btn-margin{
+  height:40px;
+  margin-top:30px !important;
+}
+
+.del-btn-width{
+  padding:0!important;
+}
+
+.text-align-vertical{
+  vertical-align: baseline!important;
+  margin-top:2px;
+}
+
+.padding-0{
+  padding:2px!important;
+  margin-left:10px;
+}
+
+.red-padded{
+  background-color:#C90F03 !important;
+  color:white !important;
+  border-radius:1rem;
+  margin:20px 10px 0 10px!important;
+}
+
+.delete-color{
+  color:white!important;
+  background-color: transparent !important;
+  border:none!important;
+  margin-left:10px;
+}
+
+
+.black-cancel{
+  color: black!important;
+  background-color:  white!important;
+}
+
+.red-icon{
+  color: #C90F03!important;
+  background-color:  transparent!important;
+}
+.padding-less{
+  padding:0!important;
+}
+
+.border-bottom-red{
+  border-bottom: 3px solid #C90F03!important;
+}
+
+.shopping-box{
+box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+cursor:default!important;
+}
+
+.display-block{
+  display:inline-block!important;
+}
+
+.social-margin{
+  margin:0 10px;
+}
+
+.inline-grid{
+  display:flex;
+}
+
+.padding-allergens{
+  padding-left:0px!important;
+  padding-right:0px!important;
+}
+
+.paper-image{
+  margin:20px auto;
+  max-width:400px;
+  min-width:300px;
+  text-align: center;
+  height:60px;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px !important;
+}
+
+.discard-up:hover{
+  color:white;
 }

@@ -3,36 +3,15 @@ url("https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=sw
 
 /* colour variables*/
 $clr-primary:#d50000;
-$clr-primary-hover:#29e6a7;
-$clr-primary-dark:#039d69;
-$clr-gray100:#f9fbff;
-$clr-gray150:#f4f6fb;
-$clr-gray200:#eef1f6;
 $clr-gray300:#e1e5ee;
-$clr-gray400:#767b91;
-$clr-gray500:#4f546c;
-$clr-gray600:#2a324b;
-$clr-gray700:#161d34;
 
 $radius: 0.2rem;
 
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body{
-    font-family: Oxygen, sans-serif;
-    margin:2rem;
-}
 
 .card{
     overflow: hidden;
     box-shadow: 0 2px 20px $clr-gray300;
-    border-radius: 10rem;
+    border-radius: 10px;
     display:flex;
     flex-direction: column;
     justify-content: space-between;

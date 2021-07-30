@@ -4,6 +4,7 @@ import {Card} from 'react-bootstrap';
 import { makeStyles } from '@material-ui/core/styles';
 import LocalPharmacyIcon from '@material-ui/icons/LocalPharmacy';
 import './Ailment.css'
+import ShareDKN from './ShareDKN'
 
 const useStyles = makeStyles({
   root: {
@@ -46,7 +47,7 @@ function HomeRemedies(props) {
             { 
                   
                   remedies.map(r => 
-                    <Card style={{marginTop:"1rem"}}>
+                    <Card style={{marginTop:"1rem", borderRadius:"2rem"}}>
                     <Card.Header as="h5" className={classes.root} ><LocalPharmacyIcon style={{ fontSize: 30, color: '#C90F03' }}/></Card.Header>
                     <Card.Body>
                       <Card.Text>
@@ -54,6 +55,7 @@ function HomeRemedies(props) {
                     <p>{r}</p>
                   }
                       </Card.Text>
+                      <ShareDKN title={a_name} desc={r} />
                   </Card.Body>
                 </Card>
                   )

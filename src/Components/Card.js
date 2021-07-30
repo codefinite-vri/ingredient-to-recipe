@@ -14,13 +14,29 @@ export default function Card(props) {
         <div className="card">
           {/*error && <Alert variant="danger">{error}</Alert>*/}
             <div className="card__body">
+            <Link className="text-link"
+                to={{ pathname:`/full-recipe/${props.id}`,
+                    state:{
+                      id:props.id,
+                      title:props.title,
+                      instructions:props.instructions,
+                      ingredients:props.ingredients,
+                      img:props.img,
+                      cookTime:props.cookTime,
+                      servings:props.servings
+                      
+                    }     
+                      
+                    }}>
                 <img src={props.img}
                 alt="Recipe img"
                 className="card__image"/>
-                <h4 className="card__title">{props.title}</h4>
+                <h4 className="card__title text-red">{props.title}</h4>
+
                 <p className="card__description">{props.servings}</p>
                 <p className="card__description">
                   {!props.likes ? 0: props.likes} likes</p>
+                  </Link>
                 <CardActions disableSpacing>
                 <FavoriteManager
                       setRecChange={props.setRecChange} // from recipes
@@ -54,13 +70,14 @@ export default function Card(props) {
                       
                     }}>
   
-        <Button variant="outline-danger" className="btn btn-md m-2">
+        <Button className="btn btn-md m-2 btn-red">
           View Recipe
           </Button>
         </Link>   
       </CardActions>
        
        </div>
+   
         </div>
     )
 }

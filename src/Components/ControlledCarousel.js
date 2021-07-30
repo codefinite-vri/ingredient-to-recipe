@@ -10,7 +10,8 @@ export default function ControlledCarousel() {
     };
   
     return (
-      <Carousel>
+      <>
+      <Carousel className="carousel-desktop">
         <Carousel.Item>
           <img
             className="d-block w-100"
@@ -33,5 +34,6 @@ export default function ControlledCarousel() {
           />
         </Carousel.Item>
       </Carousel>
+      </>
     );
   }

@@ -101,7 +101,7 @@ const SocialMediaIntegration=({title, url})=>{
   return (
     <>
     <IconButton aria-label="share" onClick={handleOpen}>
-          <ShareIcon />
+          <ShareIcon className="red-icon" />
         </IconButton>
       <Modal
         open={open}

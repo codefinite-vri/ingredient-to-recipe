@@ -7,6 +7,8 @@ import Row from 'react-bootstrap/Row'
 import Chip from '@material-ui/core/Chip';
 import CancelIcon from '@material-ui/icons/Cancel';
 import { Col } from 'react-bootstrap';
+import SearchIcon from '@material-ui/icons/Search';
+import {Button} from 'react-bootstrap';
 
 
 export default function SearchByIng () {
@@ -116,14 +118,35 @@ const removeChipTags =(index,tag) => {
             />
             <datalist id="ingredientNames">
               <option value="Potato"/>
+              <option value="Tomato"/>
+              <option value="Onion"/>
               <option value="Salt"/>
+              <option value="Sugar"/>
               <option value="Milk"/>
-              <option value="Orange Peels"/>
+              <option value="Cheese"/>
+              <option value="Orange"/>
+              <option value="Banana"/>
+              <option value="Apple"/>
               <option value="Butter"/>
+              <option value="Chocolate"/>
+              <option value="Oreo"/>
+              <option value="Peanut"/>
+              <option value="Cashew"/>
+              <option value="Mushroom"/>
+              <option value="Rice"/>
+              <option value="Flour"/>
+              <option value="Chikpeas"/>
+              <option value="Water"/>
+              <option value="Mustard"/>
+              <option value="Coriander"/>
+              <option value="Cloves"/>
+              <option value="Chicken"/>
+              <option value="Eggs"/>
             </datalist>
             </label>
         <div className="text-center m-3" >
-        <input type="button" className="btn btn-outline-success" value="Search" variant="outline-success" onClick= {handleClick}/>
+        <Button type="button" onClick={handleClick} className="btn-red">Search <SearchIcon className="white-icon"/></Button>
+        
        </div> </Form></Col>
        </Row>
        </Container>

@@ -30,7 +30,7 @@ function AilmentCategory() {
           <CardDeck className="card-deck" style={{paddingTop:'2rem'}}>
             { 
               uniqueCategories.map(c => 
-                <Card className="text-center">
+                <Card className="text-center" style={{height: '8rem',borderRadius:"6rem"}}>
                   <Card.Body>
                     <LocalPharmacyIcon style={{ fontSize: 60, color: '#C90F03' }}/>
                     <Card.Title> 
