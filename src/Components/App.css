@@ -166,3 +166,44 @@ body{
   height:40px;
   margin-top:30px !important;
 }
+
+.del-btn-width{
+  padding:0!important;
+}
+
+.text-align-vertical{
+  vertical-align: baseline!important;
+  margin-top:2px;
+}
+
+.padding-0{
+  padding:2px!important;
+  margin-left:10px;
+}
+
+.red-padded{
+  background-color:#C90F03 !important;
+  color:white !important;
+  border-radius:1rem;
+  margin:20px 10px 0 10px!important;
+}
+
+.delete-color{
+  color:white!important;
+  background-color: transparent !important;
+  border:none!important;
+  margin-left:10px;
+}
+
+.padding-less{
+  padding:0!important;
+}
+
+.border-bottom-red{
+  border-bottom: 3px solid #C90F03!important;
+}
+
+.shopping-box{
+box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+cursor:default!important;
+}

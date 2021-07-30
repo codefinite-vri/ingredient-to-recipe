@@ -2,8 +2,9 @@ import React,{useRef, useState, useEffect} from 'react';
 import { Form, Card, Button, Alert, Container} from 'react-bootstrap';
 import { useAuth } from '../Contexts/AuthContext'
 import {Row, Col} from 'react-bootstrap'
-import ClearIcon from '@material-ui/icons/Clear';
+import CancelIcon from '@material-ui/icons/Cancel';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import {getShopList, addShopList, delShopList} from '../api.js'
 
 export default function ShoppingList() {
@@ -69,9 +70,9 @@ export default function ShoppingList() {
            <Container className="d-flex align-items-center justify-content-center" style={{minHeight:"100vh", padding:'0 0 0 0'}}
                 >
                      <div className="w-100" style={{maxWidth:"400px" , padding:"20px"}}>
-        <Card>
+        <Card className="shopping-box">
             <Card.Body>
-                <h2 className="text-center mb-4">Shopping List</h2>
+                <h2 className="text-center mb-4 border-bottom-red">SHOPPING LIST</h2>
                 {error && <Alert variant="danger">{error}</Alert>}
                 <Form onSubmit={addItem} className="form-centered">
                     <Form.Group id="addItem">
@@ -83,10 +84,21 @@ export default function ShoppingList() {
                         <AddCircleIcon/>
                     </Button>
                 </Form>
+                <Col className="text-center padding-less">
+            {shopList.Items.length>0 ? shopList.Items.map(item=>
+                <Row className="form-centered red-padded">
+                    <div className="text-align-vertical"><ShoppingCartIcon/>  {item}</div>
+                    <div className="del-btn-width"><Button className= "padding-0 delete-color" onClick={()=>delItem(item)} disabled={loading}><CancelIcon /></Button></div>
+                </Row>
+                )
+                :
+                "Your Shopping List is Empty."
+            } 
+            </Col>
             </Card.Body>
         </Card>
 
-        <Card>
+        {/* <Card>
             <Card.Body className="text-center">
             <Col>
             {shopList.Items.length>0 ? shopList.Items.map(item=>
@@ -101,7 +113,7 @@ export default function ShoppingList() {
             </Col>
             
             </Card.Body>
-        </Card>
+        </Card> */}
         </div>
         </Container>
         </>
