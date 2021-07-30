@@ -229,3 +229,7 @@ cursor:default!important;
 .display-block{
   display:inline-block!important;
 }
+
+.social-margin{
+  margin:0 10px;
+}
