@@ -3,6 +3,7 @@ import { Form, Card, Button, Alert, Container} from 'react-bootstrap';
 import { useAuth } from '../Contexts/AuthContext'
 import {Row, Col} from 'react-bootstrap'
 import ClearIcon from '@material-ui/icons/Clear';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 import {getShopList, addShopList, delShopList} from '../api.js'
 
 export default function ShoppingList() {
@@ -72,16 +73,14 @@ export default function ShoppingList() {
             <Card.Body>
                 <h2 className="text-center mb-4">Shopping List</h2>
                 {error && <Alert variant="danger">{error}</Alert>}
-                <Form onSubmit={addItem}>
+                <Form onSubmit={addItem} className="form-centered">
                     <Form.Group id="addItem">
                         <Form.Label>Add Item</Form.Label>
                         <Form.Control type="text" ref={itemRef} required placeholder="Item Name"/>
-                    </Form.Group>
+                    </Form.Group>             
 
-                   
-
-                    <Button disabled={loading} className="w-100 btn-red" type="submit">
-                        Add Item
+                    <Button disabled={loading} className=" btn-red btn-margin" type="submit">
+                        <AddCircleIcon/>
                     </Button>
                 </Form>
             </Card.Body>
