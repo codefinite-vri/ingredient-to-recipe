@@ -47,7 +47,7 @@ function HomeRemedies(props) {
             { 
                   
                   remedies.map(r => 
-                    <Card style={{marginTop:"1rem"}}>
+                    <Card style={{marginTop:"1rem", borderRadius:"2rem"}}>
                     <Card.Header as="h5" className={classes.root} ><LocalPharmacyIcon style={{ fontSize: 30, color: '#C90F03' }}/></Card.Header>
                     <Card.Body>
                       <Card.Text>
