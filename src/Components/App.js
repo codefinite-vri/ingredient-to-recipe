@@ -47,7 +47,7 @@ function App() {
       <AuthProvider>
       <NavigationBar></NavigationBar>
       </AuthProvider></Router>
-    <Container className="d-flex align-items-center justify-content-center" style={{minHeight:"66vh"}}
+    <Container className="d-flex align-items-center justify-content-center" style={{minHeight:"72vh"}}
     >
       <div className="home-edits" >
         <Router>

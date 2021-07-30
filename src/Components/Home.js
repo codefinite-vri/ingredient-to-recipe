@@ -189,7 +189,7 @@ export default function Home() {
           </a>
         </Col>
         <Col md="6" lg="3" className="s3__box-item">
-        <a href="/contact-us" className="text-link">
+        <a href="/contact" className="text-link">
           <img
             src="images/home011.jpg"
             alt=""
