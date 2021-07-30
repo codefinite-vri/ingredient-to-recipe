@@ -77,7 +77,7 @@ class MobileMenu extends Component {
                 <DropdownItem href="/shopping-list">Shopping List</DropdownItem>
                 <DropdownItem href='/favorites'>Favorites</DropdownItem>
                 <DropdownItem href="/surprise-recipe">Surprise</DropdownItem>
-                <DropdownItem href="/settings">Settings</DropdownItem>
+                <DropdownItem href="/image-search">Ingredient Recognition</DropdownItem>
               </DropdownMenu>
             </Dropdown>
           </NavItem>
@@ -347,6 +347,9 @@ class MobileMenu extends Component {
                   </NavItem>
                   <NavItem className="nav-item-n">
                     <NavLink href="/surprise-recipe">Surprise</NavLink>
+                  </NavItem>
+                  <NavItem className="nav-item-n">
+                    <NavLink href="/image-search">Ingredient Recognition</NavLink>
                   </NavItem>
                 </Nav>
               </div>
