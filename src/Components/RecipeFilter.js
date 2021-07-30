@@ -7,6 +7,9 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { Slider,ListItemText,MenuItem,InputLabel,Select, Input } from '@material-ui/core';
 import {Col} from 'react-bootstrap'
+import Chip from '@material-ui/core/Chip';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -87,6 +90,22 @@ const names = [
   'Onion',
   'Cheese',
   'Milk',
+  'Mushroom',
+  'Salt',
+  'Sugar',
+  'Chikpeas',
+  'Water',
+  'Rice',
+  'Flour',
+  'Peanut',
+  'Cashew',
+  'Fig',
+  'Butter',
+  'Mustard',
+  'Coriander',
+  'Cloves',
+  'Orange',
+  'Banana',
   'Apple',
   'Peas',
   'Rice',
@@ -165,8 +184,25 @@ const names = [
     
     <Col xs={3}>
     <FormControl className={classes.allergenFilter}>
-        <InputLabel >Allergens</InputLabel>
-        <Select
+        <Autocomplete
+        multiple
+        id="tags-filled"
+        options={names.map((option) => option)}
+        freeSolo
+        // value={props.allergenName}
+        onChange={handleAllergens}
+        input={<Input />}
+        renderTags={(value, getTagProps) =>
+          value.map((option, index) => (
+            <Chip variant="outlined" label={option} {...getTagProps({ index })} />
+          ))
+        }
+        renderInput={(params) => (
+          <TextField {...params} variant="outlined" label="Allergens" placeholder="Add Allergens" />
+        )}
+      />
+      
+        {/* <Select
           multiple
           value={props.allergenName}
           onChange={handleAllergens}
@@ -180,7 +216,7 @@ const names = [
               <ListItemText primary={name} />
             </MenuItem>
           ))}
-        </Select>
+        </Select> */}
       </FormControl>
     </Col>
     </div>

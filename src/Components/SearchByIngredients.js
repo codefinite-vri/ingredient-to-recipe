@@ -118,10 +118,30 @@ const removeChipTags =(index,tag) => {
             />
             <datalist id="ingredientNames">
               <option value="Potato"/>
+              <option value="Tomato"/>
+              <option value="Onion"/>
               <option value="Salt"/>
+              <option value="Sugar"/>
               <option value="Milk"/>
-              <option value="Orange Peels"/>
+              <option value="Cheese"/>
+              <option value="Orange"/>
+              <option value="Banana"/>
+              <option value="Apple"/>
               <option value="Butter"/>
+              <option value="Chocolate"/>
+              <option value="Oreo"/>
+              <option value="Peanut"/>
+              <option value="Cashew"/>
+              <option value="Mushroom"/>
+              <option value="Rice"/>
+              <option value="Flour"/>
+              <option value="Chikpeas"/>
+              <option value="Water"/>
+              <option value="Mustard"/>
+              <option value="Coriander"/>
+              <option value="Cloves"/>
+              <option value="Chicken"/>
+              <option value="Eggs"/>
             </datalist>
             </label>
         <div className="text-center m-3" >
