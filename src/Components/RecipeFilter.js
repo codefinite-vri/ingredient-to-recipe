@@ -173,17 +173,18 @@ const names = [
       </FormControl>
       <div className={classes.root}>
       <FormLabel component="legend">Servings</FormLabel>
-      <Col xs={8} lg={12}>
+      <Col xs={4} sm={6} lg={12} className="padding-allergens">
       <PrettoSlider valueLabelDisplay="on" aria-label="pretto slider"
       onChange={handleSlider}
       min={1}
       max={100}
       marks={[{value:1,label:'1'}]}
-      defaultValue={5} /></Col>
+      defaultValue={5} />
+      </Col>
     </div>
     
-    <Col xs={3}>
-    <FormControl className={classes.allergenFilter}>
+    <Col xs={4} sm={6} className="padding-allergens">
+    <FormControl className={classes.allergenFilter} >
         <Autocomplete
         multiple
         id="tags-filled"
@@ -198,7 +199,7 @@ const names = [
           ))
         }
         renderInput={(params) => (
-          <TextField {...params} variant="outlined" label="Allergens" placeholder="Add Allergens" />
+          <TextField {...params} variant="outlined" label="Allergens" placeholder="Allergen" />
         )}
       />
       

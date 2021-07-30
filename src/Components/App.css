@@ -237,3 +237,8 @@ cursor:default!important;
 .inline-grid{
   display:flex;
 }
+
+.padding-allergens{
+  padding-left:0px!important;
+  padding-right:0px!important;
+}
