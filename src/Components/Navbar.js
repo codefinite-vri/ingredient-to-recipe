@@ -48,9 +48,14 @@ class MobileMenu extends Component {
             <NavLink href="/Login" className="navL">Login</NavLink>
           </NavItem>
         :
+        <>
           <div>
             <NavItem className="nav-item-m"><NavLink className="navL">Hello, {this.state.currentUser.displayName}</NavLink></NavItem>
           </div>
+          <div>
+            <NavItem className="nav-item-m"><NavLink href="/dashboard" className="navL">Dashboard</NavLink></NavItem>
+          </div>
+          </>
         }
           <NavItem className="nav-item-m">
             <NavLink href="/" className="navL">Home</NavLink>
@@ -378,9 +383,9 @@ class MobileMenu extends Component {
                     <NavItem className="nav-item-n">
                       <NavLink href="/dashboard">Dashboard</NavLink>
                     </NavItem>
-                    <NavItem className="nav-item-n">
+                    {/* <NavItem className="nav-item-n">
                       <NavLink href="/settings">Settings</NavLink>
-                    </NavItem>
+                    </NavItem> */}
                     <NavItem className="nav-item-n">
                       <NavLink href="/login" onClick={this.handleLogout}>Log out</NavLink>
                     </NavItem>
