@@ -74,19 +74,19 @@ body{
 .btn-red{
   background-color:#C90F03 !important;
   border-color:  #C90F03!important;
+  color:white !important;
 }
 .text-red{
   color:  #C90F03!important;
   text-decoration:none !important;
 }
 
-.MuiButton-label{
-  /* color:  #C90F03!important; */
-}
 
 .MuiButton-label a{
   color:  #C90F03!important;
 }
+
+
 
 .card-deck{
   margin-top: 10px;
@@ -138,6 +138,10 @@ body{
   margin-top: 10px !important;
 }
 
+.cancel-btn-recipe{
+  padding:0px!important;
+  margin-right:14px!important;
+}
 .row1{
   margin-top:0!important;
 }
@@ -193,6 +197,11 @@ body{
   background-color: transparent !important;
   border:none!important;
   margin-left:10px;
+}
+
+.black-cancel{
+  color: black!important;
+  background-color:  white!important;
 }
 
 .padding-less{
