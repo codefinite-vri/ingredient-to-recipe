@@ -255,3 +255,8 @@ cursor:default!important;
 .discard-up:hover{
   color:white;
 }
+
+.same-line-components{
+  display:flex!important;
+  justify-content: center;
+}

@@ -1,6 +1,7 @@
 import React from 'react'
 import './FullRecipe.css'
-
+import SocialMediaIntegration from './SocialMediaIntegration'
+import MealHandler from './MealHandler';
 
 export default function FullRecipe(props) {
     const method = props.location.state.instructions;
@@ -21,7 +22,10 @@ export default function FullRecipe(props) {
                 {ingred.map(i => <li key={i}>{i}</li>)}</ul>
                 <h5 className="page__insructions">Method:<br/></h5>
                  <ol className="page-inst1">{method.map(m =><li key={m}>{m}</li>)}</ol>
-                
+                 <div className="same-line-components">
+                    <SocialMediaIntegration title={props.location.state.title} url={`localhost:3000/recipe/${props.location.state.id}`} />
+                    <MealHandler recipe={props.location.state} />
+                 </div>
             </div>
     </div>
     )
