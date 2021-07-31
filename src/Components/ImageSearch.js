@@ -80,7 +80,7 @@ class SearchImage extends Component {
               
               <input type="text" value={this.state.url} name="imageURL" onChange={this.onUrlChange} />
             </Col>
-            
+            {this.state.url != ''?
               <Col>
                 <img src={this.state.image} height="200" weight="200"/>
                 <br></br>
@@ -99,7 +99,9 @@ class SearchImage extends Component {
                   <></>
                 }
               </Col>
-            
+            :
+              <></>  
+            } 
           </Row>
         </div>
       );
