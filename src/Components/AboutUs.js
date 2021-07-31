@@ -34,7 +34,7 @@ export default class AboutUs extends Component {
                   <p>The Universe of Recipes for Foodies All Over!</p>
                   <br />
                   <h4 className="font-weight-bold" style={{color:"#C90F03"}}>How we can help?</h4>
-                  <p>You have the ingredients, we have the recipes! Together we ensure that you have the most cherishing meals of your life! With a wide variety of cuisines and ingredients, we take care of your needs and cravings. Features like Shopping List, Meal Planner and Surprise Recipe are just an added beenfit!</p>
+                  <p>You have the ingredients, we have the recipes! Together we ensure that you have the most cherishing meals of your life! With a wide variety of cuisines and ingredients, we take care of your needs and cravings. Features like Shopping List, Meal Planner and Surprise Recipe are just added benefits!</p>
                 </div>
               </div>
             </div>

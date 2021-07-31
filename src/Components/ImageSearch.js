@@ -92,7 +92,7 @@ class SearchImage extends Component {
               <Col className='col-border'><center>
               <div id="border-img">
               
-                <img src={this.state.image} height="200" weight="200"/></div>
+                <img src={this.state.image} height="130" weight="130"/></div>
                 <br></br>
                 <Button type="button" onClick={this.onAnalyse} className='btn-red' >Analyse</Button></center>
                 </Col>
