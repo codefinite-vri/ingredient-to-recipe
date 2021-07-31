@@ -27,11 +27,20 @@ class SearchImage extends Component {
 
     onImageChange = async(event) => {
       
-    
+      const toBase64 = file => new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result.slice(23, reader.result.length));
+        reader.onerror = error => reject(error);
+      });
+      
       if (event.target.files && event.target.files[0]) {
+        let img = await toBase64(event.target.files[0])
+        let imgLink = await postImgbb(img);
+        console.log(imgLink.imgurl);
         this.setState({
-          url: event.target.files[0],
-          image: event.target.files[0]
+          url: imgLink.imgurl,
+          image: imgLink.imgurl
        });
 
       }
