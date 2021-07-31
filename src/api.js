@@ -167,6 +167,9 @@ export async function postImgbb(img){
             headers: {'Content-Type':'application/json', 'Accept': 'application/json'}, 
             body: JSON.stringify(obj)
         });
+        if(response.ok) {
+            return response.json();
+        }
     }catch(error){
         console.log(error)
     }
