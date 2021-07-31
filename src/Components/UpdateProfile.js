@@ -4,6 +4,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { useAuth } from '../Contexts/AuthContext';
 import Chip from '@material-ui/core/Chip';
 import CancelIcon from '@material-ui/icons/Cancel';
+import { setProfile, getAllergens } from '../api';
 
 
 export default function UpdateProfile (){
@@ -12,49 +13,39 @@ export default function UpdateProfile (){
   maxWidth: '100%',margin:'0 auto'};
   
   const inputStyling = {appearance:'none' , border:'none' , outline:'none' , margin:'10px', padding:'10px'};
-
-  const [searchTerm,setSearchTerm] = useState('');
-  const [hasDeleted,setHasDeleted] = useState(false);
-  const [deletedChip,setDeletedChip] = useState({});
   const [tags, setTags] = React.useState([]);
 
   const addTags = event => {
     if (event.keyCode === 32 && event.target.value !== "") {
-        setTags([...tags, event.target.value]);
+        if(!tags.includes(event.target.value))
+            setTags([...tags, event.target.value.trim()]);
         event.target.value = "";
     }
 };
 
-const reformSearchTerm = () =>{
-  tags.forEach(tag => {
-    if(typeof(tag) === 'object') {
-      if(!searchTerm.includes(tag.label))
-        setSearchTerm(searchTerm.concat(tag.label +" "))
-    }
 
-    else {if(!searchTerm.includes(tag))
-      setSearchTerm(searchTerm.concat(tag));}
-  })
-
+const getMyAllergies = async() =>{
+    const res = await getAllergens(currentUser.email);
+    console.log(res)
+    setTags(res)
 }
 
-useEffect(() =>{
-  reformSearchTerm();   
-},[tags])
+useEffect(() => getMyAllergies() ,[])
+
+const submitProfile = async(newEmail) => {
+        if(newEmail.value !== undefined)
+    {
+    const data = await setProfile(currentUser.email,newEmail.value,tags);
+    console.log(data);
+ }
+}
+
+useEffect(()=> console.log(tags) ,[tags])
 
 const removeTags = index => {
-  if(typeof(tags[index]) === 'string')
-    setSearchTerm(searchTerm.replace(tags[index],''));
-  setTags([...tags.filter(tag => tags.indexOf(tag) !== index)]);
-
+    setTags([...tags.filter(tag => tags.indexOf(tag) !== index)]);
 };
 
-const removeChipTags =(index,tag) => {
-  setHasDeleted(true);
-  setSearchTerm(searchTerm.replace(tag.label,''));
-  setDeletedChip(tag);
-  removeTags(index);
-};
     const displayNameRef = useRef();
     const emailRef = useRef();
     const passwordRef = useRef();
@@ -64,7 +55,8 @@ const removeChipTags =(index,tag) => {
     const [loading, setLoading] = useState(false);
     const history = useHistory()
 
-    function handleSubmit(e){
+
+    function handleSubmit (e){
         e.preventDefault();      
             
         if(passwordRef.current.value !== 
@@ -88,6 +80,7 @@ const removeChipTags =(index,tag) => {
             promises.push(updateDetails(displayNameRef.current.value)) 
         }
 
+        const newEmail = emailRef.current;
         Promise.all(promises)
             .then(()=>{
                 history.push("/");
@@ -96,7 +89,7 @@ const removeChipTags =(index,tag) => {
                 setError(error.message)
             })
             .finally(()=>{
-                setLoading(false)
+                submitProfile(newEmail);
             })
     }
 
@@ -130,7 +123,6 @@ const removeChipTags =(index,tag) => {
                                 key={index}
                                 className="m-2"
                                 >
-                                {typeof(tag) !== 'object' ? 
                                 <Chip 
                                 className="mt-1"
                                 label={tag}
@@ -138,14 +130,6 @@ const removeChipTags =(index,tag) => {
                                 deleteIcon = {<CancelIcon/>}
                                 onDelete={() => removeTags(index)} 
                                 ></Chip>
-                            :
-                            <Chip 
-                            className="mt-1"
-                            label={tag.label}
-                            color='secondary'
-                            deleteIcon = {<CancelIcon/>}
-                            onDelete={() => removeChipTags(index,tag)} 
-                            ></Chip>}
                             </span>
                         ))}
                         <input

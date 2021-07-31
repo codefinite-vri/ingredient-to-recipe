@@ -48,7 +48,6 @@ app.get('/api/home-remedies',(req,res) => {
 
 
 app.post('/api/recipes', (req,res) => {
-    //console.log(req.body)
     let searchArray = [] , obj_arr = [], query, allergies = '',
     searchTerm = req.body.searchTerm
     const allergArray = req.body.allergies;
@@ -321,7 +320,7 @@ app.post('/api/createShop',(req,res) => {
 
 app.get('/api/userShopList/:id',(req,res) => {
     shopList.findOne({ 'userID': req.params.id }, 'userID Items', function (err, list) {
-        if (err) return handleError(err);
+        if (err) return console.log(err);
         // console.log(list);
         res.json(list);
       });
@@ -335,7 +334,7 @@ app.get('/api/userShopList/add/:id/:item',(req,res) => {
             //console.log("Result :", doc);
             if(doc==false){
                 shopList.findOneAndUpdate({'userID': req.params.id}, { $push:{Items:req.params.item} }, {new:true}, function (err, list) {
-                if (err) return handleError(err);
+                if (err) return console.log(err);
                 // console.log(list);
                 res.json(list);
               });
@@ -352,7 +351,7 @@ app.get('/api/userShopList/add/:id/:item',(req,res) => {
 
 app.get('/api/userShopList/del/:id/:item',(req,res) => {
     shopList.findOneAndUpdate({'userID': req.params.id}, { $pull:{Items:req.params.item} }, {new:true, multi:false}, function (err, list) {
-        if (err) return handleError(err);
+        if (err) return console.log(err);
         // console.log(list);
         res.json(list);
       });
@@ -498,15 +497,6 @@ app.post('/api/users/:userid/mealPlanner/:id/edit',(req,res)=>{
 })
 
 app.post('/api/surprise-recipe',(req,res)=>{
-    User.find({email:req.body.email},(req,res)=>{
-        //gets allergen details
-    })
-    const allergenArr = req.body.allergens;
-    allergenArr.forEach((part,index) =>{
-       allergenArr[index] = '-' + allergenArr[index];
-    })
-    
-    const allergens = allergenArr.join(' ') ;
     const searchTerm  = req.body.ing;
     const filter = { ingredients: { $regex: searchTerm , $options :'i'} };
     Recipe.aggregate([
@@ -546,30 +536,39 @@ app.get('/api/imageSearch',(req,res) => {
     const got = require('got');
     const apiKey = imgApiKey;
     const apiSecret = imgApiSecret;
-
-    //const imageUrl = req.query.url;
-    const imageUrl = "https://images.financialexpress.com/2020/02/2-94.jpg";
+    const imageUrl = req.query.url;
     const url = 'https://api.imagga.com/v2/tags?image_url=' + encodeURIComponent(imageUrl);
+
     (async () => {
         try {
             const response = await got(url, {username: apiKey, password: apiSecret});
             console.log('in response')
-            console.log(response.body);
+            //console.log(response.body);
             res.json(response.body);
         } catch (error) {
             console.log(error.response.body);
         }
     })();
-
 });
 
-app.post('api/imgbb',(req,res)=>{
+app.post('/api/imgbb',(req,res)=>{
+    console.log("in analyse");
     const imgbbUploader = require("imgbb-uploader");
-        console.log("in analyse");
-        imgbbUploader("7625ed871ffbb5f3484ecd40733526e6", "/home/rushabh/React Projects/BE Project/Ingredient-to-Recipe App/public/images/home006.jpg")
-          .then((response) => console.log(response))
-          .catch((error) => console.error(error));
+    const options = {apiKey:"7625ed871ffbb5f3484ecd40733526e6",base64string: req.body.base64};
+    
+    (async () => {
+        try {
+            response = await imgbbUploader(options);
+            console.log(response.url);
+            res.send({imgurl:response.url});
+
+        } catch (error) {
+            console.log(error);
+        }
+    })(); 
 });
+
+
 
 
 //adds user submitted recipe to temporary collection
@@ -825,7 +824,7 @@ app.get('/api/popularSearch', (req,res) =>{
 
             return res.json(obj_arr)
         }
-    }).limit(12).sort({count:-1})
+    }).limit(10).sort({count:-1})
 })
 
 app.get('/api/users/:userid/allergens' , (req,res)=>{
@@ -839,6 +838,23 @@ app.get('/api/ingredients' , (req,res)=>{
     Ingredient.find({},(err,foundIng) => {
         if(err) console.log(err)
         else res.json(foundIng[0].Ingredients)
+    })
+})
+
+app.post('/api/users/:userid/edit', (req,res) =>{
+    const oldEmail = req.body.oldEmail,
+          newEmail = req.body.newEmail,
+          allergens = req.body.allergies; 
+    User.findOneAndUpdate({email: oldEmail}, 
+        {email:newEmail, 
+        Allergens: allergens},
+     {new:true, upsert:true},
+    (editedUser,err) => {
+        if(err) {
+            console.log(err); res.json(false);}
+        else 
+        {console.log(editedUser)
+        res.json(true);}
     })
 })
 
