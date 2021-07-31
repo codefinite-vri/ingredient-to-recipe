@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import {getImageSearch, getImgbb} from '../api.js'
-import {Button} from 'reactstrap'
+import {getImageSearch, postImgbb} from '../api.js'
+import {Button, Row, Col} from 'reactstrap'
 
 class SearchImage extends Component {
     constructor(props) {
@@ -20,14 +20,20 @@ class SearchImage extends Component {
     onUrlChange = event => {
       console.log(event.target.value)
       this.setState({url: event.target.value});
+      this.setState({
+        image: event.target.value
+      });
     };
 
-    onImageChange = event => {
+    onImageChange = async(event) => {
+      
+    
       if (event.target.files && event.target.files[0]) {
-        let img = event.target.files[0];
         this.setState({
-          image: URL.createObjectURL(img)
-        });
+          url: event.target.files[0],
+          image: event.target.files[0]
+       });
+
       }
     };
 
@@ -37,8 +43,6 @@ class SearchImage extends Component {
             //get user shopList
             if(this.state.url){
               taglist = await getImageSearch(this.state.url);
-            }else{
-              taglist = await getImageSearch(this.state.image.slice(5, this.state.image.length));
             }
             //console.log(taglist);
             this.setState({
@@ -57,19 +61,18 @@ class SearchImage extends Component {
     render() {
       return (
         <div>
-          <div>
-            <div>
-              <img src={this.state.image} />
+          <Row>
+            <Col>                          
               <h1>Select Image</h1>
+              <br></br>
               <input type="file" name="myImage" onChange={this.onImageChange} />
-              <p>{this.state.image && this.state.image.slice(5,this.state.image.length)}</p>
-
+              
+              <h4>OR</h4>
+              
               <input type="text" value={this.state.url} name="imageURL" onChange={this.onUrlChange} />
-
-              <Button type="button" onClick={this.onAnalyse}>Analyse</Button>
-              {this.state.tags && console.log("this is state"+ JSON.parse(this.state.tags).result.tags[0].tag.en)}
-            </div>
-          </div>
+            </Col>
+           
+          </Row>
         </div>
       );
     }
