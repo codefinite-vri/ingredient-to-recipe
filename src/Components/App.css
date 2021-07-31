@@ -260,3 +260,29 @@ cursor:default!important;
   display:flex!important;
   justify-content: center;
 }
+
+.uppercase-text{
+  text-transform:uppercase;
+}
+
+.size-list{
+  width:fit-content!important;
+  max-width:400px;
+}
+
+#border-img { 
+  border: 10px solid transparent;
+  padding: 15px;
+  border-image: url(images/border.png) 30 stretch;
+  width:fit-content;
+}
+
+.col-border{
+  border: 2px dashed #C90F03;
+  margin: 0 6px!important;
+  padding:20px 0 ;
+}
+
+.width-fix{
+  max-width:200px;
+}
