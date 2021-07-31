@@ -548,7 +548,7 @@ app.get('/api/imageSearch',(req,res) => {
     const apiSecret = imgApiSecret;
     const imageUrl = req.query.url;
     const url = 'https://api.imagga.com/v2/tags?image_url=' + encodeURIComponent(imageUrl);
-    
+
     (async () => {
         try {
             const response = await got(url, {username: apiKey, password: apiSecret});
@@ -559,10 +559,16 @@ app.get('/api/imageSearch',(req,res) => {
             console.log(error.response.body);
         }
     })();
-
 });
 
-
+app.post('/api/imgbb',(req,res)=>{
+    console.log("in analyse");
+    const imgbbUploader = require("imgbb-uploader");
+    const options = {apiKey:"7625ed871ffbb5f3484ecd40733526e6",base64string: req.body.base64};
+    response = await imgbbUploader(options);
+    response.send();
+        
+});
 
 //adds user submitted recipe to temporary collection
 app.post('/api/tempRecipes/add',(req,res) => {
