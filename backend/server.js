@@ -546,15 +546,14 @@ app.get('/api/imageSearch',(req,res) => {
     const got = require('got');
     const apiKey = imgApiKey;
     const apiSecret = imgApiSecret;
-
-    //const imageUrl = req.query.url;
     const imageUrl = req.query.url;
     const url = 'https://api.imagga.com/v2/tags?image_url=' + encodeURIComponent(imageUrl);
+    
     (async () => {
         try {
             const response = await got(url, {username: apiKey, password: apiSecret});
             console.log('in response')
-            console.log(response.body);
+            //console.log(response.body);
             res.json(response.body);
         } catch (error) {
             console.log(error.response.body);
