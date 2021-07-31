@@ -48,7 +48,6 @@ app.get('/api/home-remedies',(req,res) => {
 
 
 app.post('/api/recipes', (req,res) => {
-    //console.log(req.body)
     let searchArray = [] , obj_arr = [], query, allergies = '',
     searchTerm = req.body.searchTerm
     const allergArray = req.body.allergies;
@@ -321,7 +320,7 @@ app.post('/api/createShop',(req,res) => {
 
 app.get('/api/userShopList/:id',(req,res) => {
     shopList.findOne({ 'userID': req.params.id }, 'userID Items', function (err, list) {
-        if (err) return handleError(err);
+        if (err) return console.log(err);
         // console.log(list);
         res.json(list);
       });
@@ -335,7 +334,7 @@ app.get('/api/userShopList/add/:id/:item',(req,res) => {
             //console.log("Result :", doc);
             if(doc==false){
                 shopList.findOneAndUpdate({'userID': req.params.id}, { $push:{Items:req.params.item} }, {new:true}, function (err, list) {
-                if (err) return handleError(err);
+                if (err) return console.log(err);
                 // console.log(list);
                 res.json(list);
               });
@@ -352,7 +351,7 @@ app.get('/api/userShopList/add/:id/:item',(req,res) => {
 
 app.get('/api/userShopList/del/:id/:item',(req,res) => {
     shopList.findOneAndUpdate({'userID': req.params.id}, { $pull:{Items:req.params.item} }, {new:true, multi:false}, function (err, list) {
-        if (err) return handleError(err);
+        if (err) return console.log(err);
         // console.log(list);
         res.json(list);
       });
@@ -498,15 +497,6 @@ app.post('/api/users/:userid/mealPlanner/:id/edit',(req,res)=>{
 })
 
 app.post('/api/surprise-recipe',(req,res)=>{
-    User.find({email:req.body.email},(req,res)=>{
-        //gets allergen details
-    })
-    const allergenArr = req.body.allergens;
-    allergenArr.forEach((part,index) =>{
-       allergenArr[index] = '-' + allergenArr[index];
-    })
-    
-    const allergens = allergenArr.join(' ') ;
     const searchTerm  = req.body.ing;
     const filter = { ingredients: { $regex: searchTerm , $options :'i'} };
     Recipe.aggregate([
@@ -825,7 +815,7 @@ app.get('/api/popularSearch', (req,res) =>{
 
             return res.json(obj_arr)
         }
-    }).limit(12).sort({count:-1})
+    }).limit(10).sort({count:-1})
 })
 
 app.get('/api/users/:userid/allergens' , (req,res)=>{
@@ -839,6 +829,23 @@ app.get('/api/ingredients' , (req,res)=>{
     Ingredient.find({},(err,foundIng) => {
         if(err) console.log(err)
         else res.json(foundIng[0].Ingredients)
+    })
+})
+
+app.post('/api/users/:userid/edit', (req,res) =>{
+    const oldEmail = req.body.oldEmail,
+          newEmail = req.body.newEmail,
+          allergens = req.body.allergies; 
+    User.findOneAndUpdate({email: oldEmail}, 
+        {email:newEmail, 
+        Allergens: allergens},
+     {new:true, upsert:true},
+    (editedUser,err) => {
+        if(err) {
+            console.log(err); res.json(false);}
+        else 
+        {console.log(editedUser)
+        res.json(true);}
     })
 })
 

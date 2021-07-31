@@ -143,8 +143,8 @@ export async function editMeal(user,id,meal)
     return await res.json();
 }
 
-export async function getSurpriseRecipe(user,allergenArr,randomIng){
-    const surprise = {email:user, allergens: allergenArr , ing:randomIng};
+export async function getSurpriseRecipe(randomIng){
+    const surprise = {ing:randomIng};
     //console.log(surprise)
     const res = await fetch(`/api/surprise-recipe`,
     { method: 'POST', 
@@ -231,4 +231,15 @@ export async function getIngredients(){
     const data = await res.json();
     console.log(data);
     return data;
+}
+
+export async function setProfile(currentEmail,newEmail,allergenList){
+    const obj = {oldEmail: currentEmail, newEmail:newEmail, allergies: allergenList};
+    console.log(obj)
+    const res = await fetch(`/api/users/:userid/edit`,
+    { method: 'POST', 
+    headers: {'Content-Type':'application/json',
+            'Accept': 'application/json'}, 
+    body: JSON.stringify(obj)});
+    return await res.json();
 }

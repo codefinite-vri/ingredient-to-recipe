@@ -44,6 +44,7 @@ export default function SmallChips(props) {
 
   useEffect(() => {
       getChips();
+      return () => setChipData(false);
   },[])
 
 

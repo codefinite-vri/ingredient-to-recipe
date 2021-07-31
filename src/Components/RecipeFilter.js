@@ -69,7 +69,7 @@ const MenuProps = {
 
 export default function RecipeFilter(props) {
   const classes = useStyles();
-
+  //console.log(props.allergenName)
 
   const handleChange = (event) => {
     props.setRanges({ ...props.ranges, [event.target.name]: event.target.checked });
@@ -79,8 +79,8 @@ export default function RecipeFilter(props) {
     props.setSlider(newVal)
   }
 
-  const handleAllergens = (event) => {
-    props.setAllergenName(event.target.value);
+  const handleAllergens = (event,newValue) => {
+    props.setAllergenName(newValue);
     };
 
   
@@ -190,7 +190,7 @@ const names = [
         id="tags-filled"
         options={names.map((option) => option)}
         freeSolo
-        // value={props.allergenName}
+        value={props.allergenName}
         onChange={handleAllergens}
         input={<Input />}
         renderTags={(value, getTagProps) =>
@@ -201,9 +201,9 @@ const names = [
         renderInput={(params) => (
           <TextField {...params} variant="outlined" label="Allergens" placeholder="Allergen" />
         )}
-      />
+        />
       
-        {/* <Select
+         {/*<Select
           multiple
           value={props.allergenName}
           onChange={handleAllergens}
