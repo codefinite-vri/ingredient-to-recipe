@@ -80,7 +80,26 @@ class SearchImage extends Component {
               
               <input type="text" value={this.state.url} name="imageURL" onChange={this.onUrlChange} />
             </Col>
-           
+            
+              <Col>
+                <img src={this.state.image} height="200" weight="200"/>
+                <br></br>
+                <Button type="button" onClick={this.onAnalyse}>Analyse</Button>
+                {this.state.tags?
+                  <>
+                    <br></br> 
+                    <ol>
+                    <lh>Top 3 contendors!!</lh>
+                    <li>{JSON.parse(this.state.tags).result.tags[0].tag.en + " with confidence: "+ JSON.parse(this.state.tags).result.tags[0].confidence.toFixed(2) +"%"}</li>
+                    <li>{JSON.parse(this.state.tags).result.tags[1].tag.en + " with confidence: "+ JSON.parse(this.state.tags).result.tags[1].confidence.toFixed(2) +"%"}</li>
+                    <li>{JSON.parse(this.state.tags).result.tags[2].tag.en + " with confidence: "+ JSON.parse(this.state.tags).result.tags[2].confidence.toFixed(2) +"%"}</li>
+                    </ol>
+                  </>
+                :
+                  <></>
+                }
+              </Col>
+            
           </Row>
         </div>
       );
