@@ -13,7 +13,7 @@ export default function SharedRecipe(){
         const data = await getMealRecipe(recipeid); 
         console.log(data)   
         setMethod(data.instructions)
-        setIngred(data.ingredients.split('$ '));
+        setIngred(data.ingredients.split('$'));
         setRecipe(data);
         
     } 
@@ -31,7 +31,7 @@ export default function SharedRecipe(){
             alt="Recipe img"
             className="page__image"/>
             <h4 className="page__title">{recipe.recipeTitle}</h4>
-            <p className="page__description">{recipe.likes} minutes</p>
+            <p className="page__description">{recipe.likes} likes</p>
             <p className="page__description">Cook Time: {recipe.cookTime} minutes</p>
             <p className="page__description">Number of servings: {recipe.servings}</p>
             <h5 className="page__ingredients">Ingredients:<br/></h5>
