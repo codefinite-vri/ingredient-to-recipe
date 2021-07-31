@@ -173,7 +173,7 @@ const names = [
       </FormControl>
       <div className={classes.root}>
       <FormLabel component="legend">Servings</FormLabel>
-      <Col xs={4} sm={6} lg={12} className="padding-allergens">
+      <Col xs={12} sm={8} md={4} className="padding-allergens">
       <PrettoSlider valueLabelDisplay="on" aria-label="pretto slider"
       onChange={handleSlider}
       min={1}
@@ -183,7 +183,7 @@ const names = [
       </Col>
     </div>
     
-    <Col xs={4} sm={6} className="padding-allergens">
+    <Col xs={12} sm={2} md={4} className="padding-allergens">
     <FormControl className={classes.allergenFilter} >
         <Autocomplete
         multiple
