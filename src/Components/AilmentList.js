@@ -27,16 +27,18 @@ function AilmentList(props) {
           <CardDeck className="card-deck">
            {     
              ailments.map(a => 
-              <Card className="text-center" style={{ height: '8rem', borderRadius:"6rem" }}>
+              <Card className="text-center no-click" style={{ height: '8rem', borderRadius:"6rem" }}>
                 <Card.Body>
+                <Link className='noLink' to={{ pathname: `/home-remedies/${a.ailment_category}/${a.ailment_name}`,
+                          state:state
+                    }}>
                 <HealingIcon style={{ fontSize: 60, color: '#C90F03' }}/>
                   <Card.Title> 
                     <ul className='list-bul-no'>
-                      <Link className='noLink' to={{ pathname: `/home-remedies/${a.ailment_category}/${a.ailment_name}`,
-                          state:state
-                    }}><li className = 'navD' key={a.ailment_name}>{a.ailment_name}</li></Link>
+                      <li className = 'navD' key={a.ailment_name}>{a.ailment_name}</li>
                     </ul>
                   </Card.Title>
+                  </Link>
                   </Card.Body>
                 </Card>
               )

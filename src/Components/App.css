@@ -117,7 +117,7 @@ body{
 }
 
 .no-click{
-  cursor:pointer!important;
+  cursor:default!important;
 }
 
 .right-align{
