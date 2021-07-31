@@ -5,7 +5,6 @@ import { Container, Row, Col } from 'reactstrap'
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Tooltip from '@material-ui/core/Tooltip';
-import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 
 const HtmlTooltip = withStyles((theme) => ({
@@ -32,14 +31,15 @@ export default function Home() {
 
   return(
     <>
-      <header>
+      <header className="mobile-design">
       <div className="intro-logo jumbo-bg">
       <center>
       <h1>Welcome to FoodieVerse</h1>
         <h3 className="subtitle">The One-Stop Destination for all your Cooking Needs!</h3>
         <ControlledCarousel/>
-          <Grid >  
-            <Grid item xs={12} sm={3}>
+          <Grid  className="inline-grid">  
+          <Grid container justify="center" spacing={4}>
+            <Grid item xs={12} sm={6} md={4} lg={3} className="margin-side-grid">
             <HtmlTooltip
             title={
               <React.Fragment>
@@ -56,7 +56,7 @@ export default function Home() {
             </HtmlTooltip>
           </Grid>
           <br/>
-          <Grid item xs={12} sm={3}>
+          <Grid item xs={12} sm={6} md={4} lg={3} className="margin-side-grid">
           <HtmlTooltip
             title={
               <React.Fragment>
@@ -64,7 +64,7 @@ export default function Home() {
               </React.Fragment>
             }
             >
-            <Paper elevation = {2} className="red-button">
+            <Paper elevation = {2} className="red-button" >
               <span className="company-icons__item">
                     <i className="fas fa-mortar-pestle" />
                     <a href="/home-remedies" class="navL">Dadi Ke Nuske</a>
@@ -73,7 +73,7 @@ export default function Home() {
             </HtmlTooltip>
           </Grid>
           <br/>
-          <Grid item xs={12} sm={3}>
+          <Grid item xs={12} sm={6} md={4} lg={3}  className="margin-side-grid">
             <HtmlTooltip
             title={
               <React.Fragment>
@@ -88,6 +88,7 @@ export default function Home() {
                 </span>
               </Paper>
             </HtmlTooltip>
+          </Grid>
           </Grid>
         </Grid>
       </center>
@@ -104,6 +105,7 @@ export default function Home() {
       <Row className="s3__box-wrapper">
       
         <Col md="6" lg="3" className="s3__box-item">
+        <a href="/recipes" className="text-link">
           <img
             src="images/home001.jpg"
             alt=""
@@ -112,8 +114,10 @@ export default function Home() {
           <p>
           Your search for recipes based on the ingredients you crave for ends here!
           </p>
+          </a>
         </Col>
         <Col md="6" lg="3" className="s3__box-item">
+        <a href="/home-remedies" className="text-link">
           <img
             src="images/home003.jpg"
             alt=""
@@ -122,8 +126,10 @@ export default function Home() {
           <p>
           Heal Naturally with verified homemade remedies.
           </p>
+          </a>
         </Col>
         <Col md="6" lg="3" className="s3__box-item">
+        <a href="/meal-planner" className="text-link">
           <img
             src="images/home004.jpg"
             alt=""
@@ -132,8 +138,10 @@ export default function Home() {
           <p>
             Like a recipe and wanna cook it for dinner on your Anniversary? Schedule it now.
           </p>
+          </a>
         </Col>
         <Col md="6" lg="3" className="s3__box-item">
+        <a href="/favorites" className="text-link">
           <img
             src="images/home005.jpg"
             alt=""
@@ -142,8 +150,10 @@ export default function Home() {
           <p>
             Love it? Save for the Future!
           </p>
+          </a>
         </Col>
         <Col md="6" lg="3" className="s3__box-item">
+        <a href="/shopping-list" className="text-link">
           <img
             src="images/home006.jpg"
             alt=""
@@ -152,8 +162,10 @@ export default function Home() {
           <p>
             Make a list of all the ingredients that you'll need to buy.
           </p>
+          </a>
         </Col>
         <Col md="6" lg="3" className="s3__box-item">
+        <a href="/surprise-recipes" className="text-link">
           <img
             src="images/home007.jpg"
             alt=""
@@ -162,26 +174,31 @@ export default function Home() {
           <p>
            Don't know what to cook? Let us choose for you!
           </p>
+          </a>
         </Col>
         <Col md="6" lg="3" className="s3__box-item">
+        <a href="/image-search" className="text-link">
           <img
             src="images/home009.jpg"
             alt=""
           />
-          <h3>Wanna Gain More?</h3>
+          <h3>Don't know what ingredient it is?</h3>
           <p>
-            The Foodium Service helps you make the best out of your investment.
+            The Ingredient Recognition feature helps you solve your problem.
           </p>
+          </a>
         </Col>
         <Col md="6" lg="3" className="s3__box-item">
+        <a href="/contact" className="text-link">
           <img
             src="images/home011.jpg"
             alt=""
           />
           <h3>Chat with Us</h3>
           <p>
-            Our Virtual Assistant will help you solve all your queries!
+            Contact us via email and we will get back to you at the earliest.
           </p>
+          </a>
         </Col>
       </Row>
       <Row>
@@ -219,9 +236,11 @@ export default function Home() {
         text-align: center;
     }
     .s3__box-item {
-        padding: 2em;
+        padding: 1em;
+        margin: 0 1 px;
         transition: all .5s;
         box-shadow: #ece9e9 1px 1px 5px;
+        cursor:pointer;
     }
     .s3__box-item:hover {
         box-shadow: red 1px 1px 15px;

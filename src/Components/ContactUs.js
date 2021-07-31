@@ -44,8 +44,10 @@ export default function ContactUs() {
   const classes = useStyles();
 
   return ( <>
+  <Container className="d-flex align-items-center justify-content-center" style={{minHeight:"100vh", padding:'1rem 0'}}
+    >
     
-    <center>
+    <center> 
           <h4>CONTACT US</h4>
           <form className="contact-form" onSubmit={sendEmail}>
         <div className={classes.margin}>
@@ -96,6 +98,7 @@ export default function ContactUs() {
       </ColorButton>
       </form>
     </center>
+    </Container>
     </>
   );
 }

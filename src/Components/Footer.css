@@ -15,3 +15,13 @@
 .footer-bottom{
     color: white!important;
 }
+
+.footer-style , .discard-up{
+    color:white;
+    text-decoration: none !important;
+}
+
+.footer-style:hover{
+    color: red;
+    text-decoration: none !important;
+}

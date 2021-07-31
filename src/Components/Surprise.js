@@ -30,6 +30,22 @@ const names = [
   'Onion',
   'Cheese',
   'Milk',
+  'Mushroom',
+  'Salt',
+  'Sugar',
+  'Chikpeas',
+  'Water',
+  'Rice',
+  'Flour',
+  'Peanut',
+  'Cashew',
+  'Fig',
+  'Butter',
+  'Mustard',
+  'Coriander',
+  'Cloves',
+  'Orange',
+  'Banana',
   'Apple',
   'Peas',
   'Rice',
@@ -43,6 +59,22 @@ const ings = [
   'Onion',
   'Cheese',
   'Milk',
+  'Mushroom',
+  'Salt',
+  'Sugar',
+  'Chikpeas',
+  'Water',
+  'Rice',
+  'Flour',
+  'Peanut',
+  'Cashew',
+  'Fig',
+  'Butter',
+  'Mustard',
+  'Coriander',
+  'Cloves',
+  'Orange',
+  'Banana',
   'Apple',
   'Peas',
   'Rice',
@@ -216,8 +248,8 @@ export default function SurpriseRecipes() {
       {
         alert('Please click on shuffler to choose your 3 musketeers!')
       }
-    const res = await getSurpriseRecipe(currentUser.email,allergens,randomIng.join('+.*'));
-    console.log(res)
+    const res = await getSurpriseRecipe(randomIng.join('+.*'));
+    //console.log(res)
     if(JSON.stringify(res) === '{}')
       setError("Whoops! Looks like we don't have any recipes with that ingredient combination. Try again!")
     

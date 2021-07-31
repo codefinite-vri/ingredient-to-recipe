@@ -27,7 +27,7 @@ function AilmentList(props) {
           <CardDeck className="card-deck">
            {     
              ailments.map(a => 
-              <Card className="text-center" style={{ height: '10rem' }}>
+              <Card className="text-center" style={{ height: '8rem', borderRadius:"6rem" }}>
                 <Card.Body>
                 <HealingIcon style={{ fontSize: 60, color: '#C90F03' }}/>
                   <Card.Title> 

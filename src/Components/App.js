@@ -47,7 +47,7 @@ function App() {
       <AuthProvider>
       <NavigationBar></NavigationBar>
       </AuthProvider></Router>
-    <Container className="d-flex align-items-center justify-content-center" style={{minHeight:"66vh"}}
+    <Container className="d-flex align-items-center justify-content-center" style={{minHeight:"72vh"}}
     >
       <div className="home-edits" >
         <Router>
@@ -64,7 +64,7 @@ function App() {
               <Route path="/home-remedies/:a_category" component={AilmentList}/>
               <Route path="/home-remedies" component={AilmentCategory}/>
               <Route exact path="/recipes" component={Recipes}/>
-              <Route path='/surprise-recipe' component={SurpriseRecipes}/>
+              <PrivateRoute path='/surprise-recipe' component={SurpriseRecipes}/>
               <Route path="/help" component={Help}/>
               <Route path="/demo" component={Demo}/>
               <Route path="/feedback" component={Feedback}/>

@@ -48,9 +48,14 @@ class MobileMenu extends Component {
             <NavLink href="/Login" className="navL">Login</NavLink>
           </NavItem>
         :
+        <>
           <div>
             <NavItem className="nav-item-m"><NavLink className="navL">Hello, {this.state.currentUser.displayName}</NavLink></NavItem>
           </div>
+          <div>
+            <NavItem className="nav-item-m"><NavLink href="/dashboard" className="navL">Dashboard</NavLink></NavItem>
+          </div>
+          </>
         }
           <NavItem className="nav-item-m">
             <NavLink href="/" className="navL">Home</NavLink>
@@ -77,7 +82,7 @@ class MobileMenu extends Component {
                 <DropdownItem href="/shopping-list">Shopping List</DropdownItem>
                 <DropdownItem href='/favorites'>Favorites</DropdownItem>
                 <DropdownItem href="/surprise-recipe">Surprise</DropdownItem>
-                <DropdownItem href="/settings">Settings</DropdownItem>
+                <DropdownItem href="/image-search">Ingredient Recognition</DropdownItem>
               </DropdownMenu>
             </Dropdown>
           </NavItem>
@@ -348,6 +353,9 @@ class MobileMenu extends Component {
                   <NavItem className="nav-item-n">
                     <NavLink href="/surprise-recipe">Surprise</NavLink>
                   </NavItem>
+                  <NavItem className="nav-item-n">
+                    <NavLink href="/image-search">Ingredient Recognition</NavLink>
+                  </NavItem>
                 </Nav>
               </div>
             </div>
@@ -375,9 +383,9 @@ class MobileMenu extends Component {
                     <NavItem className="nav-item-n">
                       <NavLink href="/dashboard">Dashboard</NavLink>
                     </NavItem>
-                    <NavItem className="nav-item-n">
+                    {/* <NavItem className="nav-item-n">
                       <NavLink href="/settings">Settings</NavLink>
-                    </NavItem>
+                    </NavItem> */}
                     <NavItem className="nav-item-n">
                       <NavLink href="/login" onClick={this.handleLogout}>Log out</NavLink>
                     </NavItem>

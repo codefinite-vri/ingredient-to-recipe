@@ -17,9 +17,8 @@ export default function Footer() {
         <div className="col-md-4 col-sm-6">
         <br></br>
             <ul className="footer-list">
-                <li >Recipe By Ingredient</li>
-                <li>Recipe by Name</li>
-                <li>Daadi Ke Nuskhe</li>
+                <li><a className="footer-style" href="/recipes">Recipe By Name/Ingredient</a></li>
+                <li><a className="footer-style" href="/home-remedies">Daadi Ke Nuskhe</a></li>
             </ul>            
         </div>
         </div>
