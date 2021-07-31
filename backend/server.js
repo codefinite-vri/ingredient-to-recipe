@@ -548,7 +548,7 @@ app.get('/api/imageSearch',(req,res) => {
     const apiSecret = imgApiSecret;
 
     //const imageUrl = req.query.url;
-    const imageUrl = "https://images.financialexpress.com/2020/02/2-94.jpg";
+    const imageUrl = req.query.url;
     const url = 'https://api.imagga.com/v2/tags?image_url=' + encodeURIComponent(imageUrl);
     (async () => {
         try {
@@ -563,13 +563,6 @@ app.get('/api/imageSearch',(req,res) => {
 
 });
 
-app.post('api/imgbb',(req,res)=>{
-    const imgbbUploader = require("imgbb-uploader");
-        console.log("in analyse");
-        imgbbUploader("7625ed871ffbb5f3484ecd40733526e6", "/home/rushabh/React Projects/BE Project/Ingredient-to-Recipe App/public/images/home006.jpg")
-          .then((response) => console.log(response))
-          .catch((error) => console.error(error));
-});
 
 
 //adds user submitted recipe to temporary collection
