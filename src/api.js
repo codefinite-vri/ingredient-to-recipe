@@ -158,6 +158,11 @@ export function getImageSearch(url){
     return fetch("/api/imageSearch/?url="+url).then(res => res.json());
 }
 
+export async function postImgbb(img){
+    console.log("in Imgbb API");
+    return fetch("/api/imgbb").then(res => res.json());
+}
+
 export async function submitRecipe(username,email,recipe)
 {
     const obj ={username:username,email:email,recipe:recipe}
