@@ -160,7 +160,12 @@ export function getImageSearch(url){
 
 export async function postImgbb(img){
     console.log("in Imgbb API");
-    return fetch("/api/imgbb").then(res => res.json());
+    fetch("/api/imgbb", {
+            method: 'POST',
+            headers: {'Content-Type':'application/json', 'Accept': 'application/json'}, 
+            body: JSON.stringify(obj)
+        });
+        
 }
 
 export async function submitRecipe(username,email,recipe)
