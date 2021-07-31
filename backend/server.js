@@ -565,16 +565,17 @@ app.post('/api/imgbb',(req,res)=>{
     console.log("in analyse");
     const imgbbUploader = require("imgbb-uploader");
     const options = {apiKey:"7625ed871ffbb5f3484ecd40733526e6",base64string: req.body.base64};
-        //console.log( req.body.base64);
-        (async () => {
-            try {
-                response = await imgbbUploader(options);
-                console.log(response.url);
+    
+    (async () => {
+        try {
+            response = await imgbbUploader(options);
+            console.log(response.url);
+            res.send({imgurl:response.url});
 
-            } catch (error) {
-                console.log(error);
-            }
-        })(); 
+        } catch (error) {
+            console.log(error);
+        }
+    })(); 
 });
 
 
