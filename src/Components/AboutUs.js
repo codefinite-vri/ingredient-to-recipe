@@ -41,6 +41,19 @@ export default class AboutUs extends Component {
           </div>
         </section>
         <Demo/>     
+        <section className="section"style={{paddingTop:'4rem'}}>
+          <div className="container">
+              <center>
+                <div className="about-content">
+                  <h3 className="font-weight-bold" style={{color:"#C90F03"}}>Sources</h3>
+                  <h4 className="font-weight-bold" style={{color:"black"}}>Dadi Ke Nuskhe</h4>
+                  <p>Home Remedies by Dr. Vilas Orosakar (Rahul Publications)</p>
+                  <h4 className="font-weight-bold" style={{color:"black"}}>Recipes</h4>
+                  <p>AllRecipes.com</p>
+                </div>
+              </center>
+          </div>
+        </section>
         <section className="mb-5">
           <div className="container">
             <div className="row">
