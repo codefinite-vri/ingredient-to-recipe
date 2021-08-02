@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { makeStyles} from '@material-ui/core/styles';
 import { Card, Alert, Row, Col, Button } from 'react-bootstrap'
-import {  NavItem, NavLink} from 'reactstrap'
 import { Link, useHistory } from 'react-router-dom'
 import { useAuth } from '../Contexts/AuthContext'
 import Paper from '@material-ui/core/Paper';
@@ -15,8 +14,6 @@ import TableRow from '@material-ui/core/TableRow';
 import AddRecipe from './AddRecipe';
 import RecipeCarousel from './RecipeCarousel'
 import { getMyRecipes } from '../api';
-import {Table as BootstrapTable} from 'react-bootstrap';
-import {Container} from 'react-bootstrap';
 
 export function LoginButton() {
     const [error, setError] = useState('')
