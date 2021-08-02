@@ -39,16 +39,16 @@ export default function Card(props) {
                   </Link>
                 <CardActions disableSpacing>
                 <FavoriteManager
-                      setRecChange={props.setRecChange} // from recipes
-                      recChange={props.recChange}
-                      id={props.id}
-                      carousel={props.carousel}
-                      setCarousel={props.setCarousel}
-                      isMyFav={props.isMyFav} //checks if the page is myfavourites page
-                      changed={props.changed}
-                      setChanged={props.setChanged} //changed and setChanged come from myfavourites page
-                      surprise={props.surprise}
-                      rerender={props.rerender}
+                  setRecChange={props.setRecChange} // from recipes
+                  recChange={props.recChange}
+                  id={props.id}
+                  carousel={props.carousel}
+                  setCarousel={props.setCarousel}
+                  isMyFav={props.isMyFav} //checks if the page is myfavourites page
+                  changed={props.changed}
+                  setChanged={props.setChanged} //changed and setChanged come from myfavourites page
+                  surprise={props.surprise}
+                  rerender={props.rerender}
                 />  
         <SocialMediaIntegration title={props.title} url={`localhost:3000/recipe/${props.id}`} />
 
