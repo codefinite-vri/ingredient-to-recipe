@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { makeStyles} from '@material-ui/core/styles';
 import { Card, Alert, Row, Col, Button } from 'react-bootstrap'
-import {  NavItem, NavLink} from 'reactstrap'
 import { Link, useHistory } from 'react-router-dom'
 import { useAuth } from '../Contexts/AuthContext'
 import Paper from '@material-ui/core/Paper';
@@ -15,8 +14,6 @@ import TableRow from '@material-ui/core/TableRow';
 import AddRecipe from './AddRecipe';
 import RecipeCarousel from './RecipeCarousel'
 import { getMyRecipes } from '../api';
-import {Table as BootstrapTable} from 'react-bootstrap';
-import {Container} from 'react-bootstrap';
 
 export function LoginButton() {
     const [error, setError] = useState('')
@@ -192,30 +189,45 @@ export default function UserProfile() {
                               />
                             </Paper>   
                             
-                              <Container>
-                              <h2 className="m-2">REJECTED RECIPES</h2>
-                            <BootstrapTable className="m-3" hover striped bordered>
-                            <thead>
-                                <tr>
-                                  <th>#</th>
-                                  <th>Recipe Title</th>
-                                  <th>Rejection Date</th>
-                                  <th>Comment</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                {rejected.map((rej,index) =>
-                                <tr>
-                                  <td>{index+1}</td>
-                                  <td>{rej.recipeTitle}</td>
-                                  <td>{rej.rejectionDate}</td>
-                                  <td>{rej.comment}</td>
-                                </tr>
-                                )}
-                                
-                              </tbody>
-                              </BootstrapTable>   
-                                </Container>  
+                            <h2 className="m-2">REJECTED RECIPES</h2>
+                            <Paper elevation={3}>
+                            <TableContainer className={classes.container}>
+                                <Table stickyHeader aria-label="sticky table">
+                                  <TableHead>
+                                    <TableRow>
+                                      <TableCell>#</TableCell>
+                                      <TableCell>Recipe title</TableCell>
+                                      <TableCell>Rejection Date</TableCell>
+                                      <TableCell>Comment</TableCell>
+                                    </TableRow>
+                                  </TableHead>
+                                  <TableBody>
+                                    {rejected.map((rej,index) => {
+                                      return (
+                                        <TableRow hover role="checkbox" tabIndex={-1} key={index}>
+                                          <TableCell>{index+1}</TableCell>
+                                          <TableCell>{rej.recipeTitle}</TableCell>
+                                          <TableCell>{rej.rejectionDate}</TableCell>
+                                          <TableCell>{rej.comment}</TableCell>
+                                        </TableRow>
+                                      );
+                                    })}
+                                  </TableBody>
+                                </Table>
+                              </TableContainer>
+                              <TablePagination
+                                rowsPerPageOptions={[10, 25, 100]}
+                                component="div"
+                                count={pending.length}
+                                rowsPerPage={rowsPerPage}
+                                page={page}
+                                onChangePage={handleChangePage}
+                                onChangeRowsPerPage={handleChangeRowsPerPage}
+                              />
+                            </Paper>   
+
+
+                             
                             </>
                         :
                             <div className="text-center mt-3" >
